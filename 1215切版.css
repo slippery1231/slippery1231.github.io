@@ -1,0 +1,195 @@
+/* header區塊 */
+.navigator{
+    width: 1200px;
+    margin: auto;
+    position: absolute;
+}
+a{
+    width: 1200px;
+    text-decoration: none;
+    color: white;
+}
+.service{
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    /* background-color: gray; */
+}
+.col{
+    width: 570px;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* background-color: orange; */
+}
+.service .col img{
+    margin: auto;
+    display: block;
+}
+h2{
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+.picTopic{
+    font-size: 30px;
+}
+p{
+    /* width: 100%; */
+    text-align: left;
+    font-size: 20px;
+    line-height:1.5 ;
+}
+
+/* container區塊 */
+.banner{
+    width: 1200px;
+    position: relative;
+    background-color:rgba(0, 0, 255, .7);
+    /* background-blend-mode: overlay; */
+    margin: 20px;
+    opacity: 0.4;
+}
+.wordsetting{
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.progress{
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    /* background-color: gray; */
+}
+.month{
+    width: 230px;
+    margin: 15px;
+    /* background-color: yellow; */
+    text-align: center;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.month h3{
+    font-weight: bold;
+    font-size: 20px;
+}
+.month p{
+    text-align: center;
+    color: red;
+}
+.month img{
+    width: 50%;
+    margin: auto;
+}
+#pic{
+    width: 40%;
+}
+#picfirstmonth{
+    margin-bottom: 20px;
+}
+ul{
+    list-style-type: disc;
+    text-align: left;
+    line-height: 20px;
+}
+.programming{
+    width:1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: gray; */
+
+}
+.programming .language{
+    width: 230px;
+    margin: 15px;
+    padding: 20px;
+    /* background-color: green; */
+    text-align: center;
+}
+.language img{
+    margin-bottom: 20px;
+}
+.foot{
+    width: 1200px;
+    flex-wrap: wrap;
+    display: flex;
+    margin: auto;
+    /* background-color: grey; */
+}
+.foot .footlogo{
+    width: 230px;
+    margin: 5px;
+    padding: 20px;
+    /* background-color: yellow; */
+}
+.foot .footlogo img{
+    margin: auto;
+    display: block;
+}
+
+/* footer區塊 */
+footer{
+    width: 1200px;
+    background-color: rgb(197, 194, 194);
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    position: relative;    
+}
+.cooperation{
+    width: 300px;
+    margin-left: 50px;
+    margin-top:20px;
+    margin-right: 851px;
+    /* background-color: yellow; */
+}
+.cooperation h1.topic{
+    font-size: 20px;
+    font-weight: bolder;
+}
+p.content{
+    display: block;
+    /* word-wrap: break-word; */
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+.info{
+    width: 600px;
+    margin-left: 50px;
+    /* background-color: blue; */
+}
+span{
+    line-height: 1.5;
+    font-size: 15px;
+}
+.info a{
+    color: black;
+    text-decoration: underline;
+    font-size: 10px;
+}
+.info img{
+    margin-top: 20px;
+}
+.copyright{
+    width: 300px;
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    font-size: 10px;
+    text-align:right;
+}
