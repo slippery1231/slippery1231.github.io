@@ -50,11 +50,11 @@ p{
 
 /* container區塊 */
 .banner{
-    width: 1200px;
+    width: 100%;
     position: relative;
     background-color:rgba(0, 0, 255, .7);
     /* background-blend-mode: overlay; */
-    margin: 20px;
+    margin: auto;
     opacity: 0.4;
 }
 .wordsetting{
