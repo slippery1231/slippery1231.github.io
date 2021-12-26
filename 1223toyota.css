@@ -1,8 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+/* head */
 header h1{
     font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
  }
  nav{
     overflow: hidden;
+    text-align: center;
     }
 a{
     width: 200px;
@@ -15,10 +25,6 @@ a{
     border: 1px dotted black;
     border-bottom: 2px solid rgb(224, 46, 46);
     margin: 2px;
-    top: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
  }
  a:hover{
      color: #fff;
@@ -26,3 +32,119 @@ a{
      top: 0;
      transition: .5s;
  }
+
+/* main */
+.container{
+    width: 100%px;
+}
+section{
+    height: 700px;
+}
+.advantage{
+    width: 960px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin: 10px auto;
+    justify-content: center;
+}
+.advantage img{
+    margin-top: 100px;
+}
+.joy-of-control,#comfort,#proud{
+    top: -390px;
+    left: 200px;
+    position: relative;
+}
+#safety,#human{
+    top: -390px;
+    right: -800px;
+    position: relative;
+
+}
+.redbox{
+    background-color: red;
+    width: 270px;
+    font-size: 20px;
+    align-items: center;
+}
+.redbox h1{
+    display: inline-block;
+    flex-wrap: nowrap;
+}
+p.number{
+    display: inline-block;
+    transform: rotate(90deg);
+    font-size: 40px;
+    font-weight: bold;
+}
+.blackbox{
+    width: 250px;
+    padding: 10px;
+    height: 175px;
+    background-color: #000;
+    color: #fff;
+}
+.revolution{
+    width: 650px;
+    background-color: #ccc ;
+    color: rgb(97, 96, 96);
+    position: relative;
+    padding: 20px;
+    top: -300px;
+    left: 200px;
+}
+.rev-proud{
+    position: relative;
+    padding: 20px;
+    top: 50px;
+    left: -50px;
+}
+.revolution h3{
+    color: red;
+}
+.revolution h3::after{
+    content: '――――――――――――';
+}
+.revolution h4{
+    background-color: #000;
+    color: #fff;
+    display: inline;
+}
+.revolution p::before{
+    content: "•";
+    color: red;
+    font-size: 1em;            
+} 
+.background-block{
+    background-color: rgb(248, 245, 245);
+    position: relative;
+    width: 400px;
+    height: 300px;
+    z-index: -1;
+    left: 600px;
+    top: -850px;
+}
+.background-block5{
+    background-color: rgb(248, 245, 245);
+    width: 400px;
+    height: 300px;
+    left: 400px;
+    top: -400px;
+    z-index: -1;
+    position: relative;
+}
+.video-button-box{
+    width: 50px;
+    height: 30px;
+    background-color: red;
+    position: relative;
+}
+.white-triangle{
+    width: 0px;
+    height: 0px;
+    border-top: 15px solid transparent;
+    border-left: 40px solid #fff;
+    border-right: 10px solid transparent;
+    border-bottom: 17px solid transparent;
+}
