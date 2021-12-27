@@ -140,7 +140,7 @@ p.number{
     z-index: -1;
     position: relative;
 }
-.video-button-box{
+/* .video-button-box{
     width: 50px;
     height: 30px;
     background-color: red;
@@ -153,4 +153,4 @@ p.number{
     border-left: 40px solid #fff;
     border-right: 10px solid transparent;
     border-bottom: 17px solid transparent;
-}
+} */
