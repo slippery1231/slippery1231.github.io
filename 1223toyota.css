@@ -62,13 +62,13 @@ section{
     position: relative;
 
 }
-.redbox{
+.info-title{
     background-color: red;
     width: 270px;
     font-size: 20px;
     align-items: center;
 }
-.redbox h1{
+.info-title h1{
     display: inline-block;
     flex-wrap: nowrap;
 }
@@ -78,7 +78,7 @@ p.number{
     font-size: 40px;
     font-weight: bold;
 }
-.blackbox{
+.info-content{
     width: 250px;
     padding: 10px;
     height: 175px;
