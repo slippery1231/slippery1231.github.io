@@ -35,7 +35,7 @@ a:hover{
 
 /* main */
 .container{
-    width: 100%px;
+    width: 100%;
 }
 section{
     height: 700px;
@@ -52,12 +52,12 @@ section{
     margin-top: 100px;
 }
 .joy-of-control,#comfort,#proud{
-    top: -390px;
+    top: -360px;
     left: 200px;
     position: relative;
 }
 #safety,#human{
-    top: -390px;
+    top: -360px;
     right: -800px;
     position: relative;
 
