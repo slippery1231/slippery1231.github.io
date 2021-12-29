@@ -1,0 +1,164 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+header {
+  max-width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 10px auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .logo {
+  margin-right: 350px;
+}
+
+header .navigator {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header .navigator a {
+  text-decoration: none;
+  color: #ccc;
+  margin-right: 10px;
+  font-weight: lighter;
+}
+
+header .navigator a:hover {
+  text-decoration: underline;
+}
+
+a.subscribe {
+  margin-left: 30px;
+  color: gray;
+  font-weight: bold;
+  padding: 6px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+a.subscribe:hover {
+  background-color: #16ce75;
+  -webkit-transition: .5s;
+  transition: .5s;
+  text-decoration: none;
+}
+
+.row {
+  margin: 30px auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+[class*='col-'] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.txt {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.txt span {
+  font-size: 50px;
+  color: #1d273b;
+}
+
+.txt p {
+  color: #79808f;
+  margin: 30px 0;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.buttons a {
+  display: block;
+}
+
+.buttons .green-button a {
+  text-decoration: none;
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #16ce75;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.buttons .green-button a:hover {
+  background-color: gray;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.front img {
+  width: 75%;
+  vertical-align: middle;
+  position: relative;
+}
+
+.bcg {
+  position: absolute;
+  opacity: .5;
+}
+
+.contact-us a, .subscribe a {
+  text-decoration: none;
+  font-weight: normal;
+  color: gray;
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.contact-us a:hover, .subscribe a:hover {
+  background-color: #16ce75;
+  color: #fff;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.service img {
+  margin-left: 58.333333%;
+}
+
+.col-md-4 .item {
+  width: 83.333333%;
+}
+
+.col-md-4 .item a {
+  text-decoration: none;
+}
+
+.creative-service {
+  background-color: #fafafb;
+}
+/*# sourceMappingURL=1227Maikon.css.map */
