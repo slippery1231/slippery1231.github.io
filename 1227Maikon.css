@@ -24,7 +24,11 @@ header {
 }
 
 header .logo {
-  margin-right: 350px;
+  margin-right: auto;
+}
+
+header .logo a {
+  text-decoration: none;
 }
 
 header .navigator {
@@ -52,12 +56,13 @@ a.subscribe {
           box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 5px;
+  -webkit-transition: .5s;
+  transition: .5s;
+  text-transform: uppercase;
 }
 
 a.subscribe:hover {
   background-color: #16ce75;
-  -webkit-transition: .5s;
-  transition: .5s;
   text-decoration: none;
 }
 
@@ -107,6 +112,7 @@ a.subscribe:hover {
 
 .buttons a {
   display: block;
+  text-transform: uppercase;
 }
 
 .buttons .green-button a {
@@ -116,12 +122,12 @@ a.subscribe:hover {
   background-color: #16ce75;
   border-radius: 5px;
   color: #fff;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .buttons .green-button a:hover {
   background-color: gray;
-  -webkit-transition: .5s;
-  transition: .5s;
 }
 
 .front img {
@@ -143,13 +149,13 @@ a.subscribe:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-left: 20px;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .contact-us a:hover, .subscribe a:hover {
   background-color: #16ce75;
   color: #fff;
-  -webkit-transition: .5s;
-  transition: .5s;
 }
 
 .service img {
@@ -212,12 +218,13 @@ a.subscribe:hover {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 30px;
+  -webkit-transition: .5s;
+  transition: .5s;
+  text-transform: uppercase;
 }
 
 .data .studio .buttons a:hover {
   background-color: #16ce75;
-  -webkit-transition: .5s;
-  transition: .5s;
 }
 
 .steps-of-our-work span {
@@ -231,5 +238,191 @@ a.subscribe:hover {
   -webkit-box-direction: reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
+}
+
+.steps-of-our-work .row .col-12 .txt-area {
+  margin-left: 8.333333%;
+}
+
+.team-work-project .row .head-content span {
+  font-size: 50px;
+  color: #1d273b;
+}
+
+.team-work-project .row .head-button a {
+  font-size: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #16ce75;
+  border-radius: 5px;
+  color: #fff;
+  -webkit-transition: .5s;
+  transition: .5s;
+  text-transform: uppercase;
+}
+
+.team-work-project .row .head-button a:hover {
+  background-color: gray;
+}
+
+.team-work-project .project-content .col-12 img {
+  border-radius: 10px;
+}
+
+.sign-up .row .col-12 .pic img {
+  width: 100%;
+}
+
+.sign-up .row .col-12 .sign-up-area {
+  margin-left: 8.333333%;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.sign-up .row .col-12 .sign-up-area label, .sign-up .row .col-12 span {
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.sign-up .row .col-12 .sign-up-area label {
+  margin: 20px 0;
+}
+
+.sign-up .row .col-12 .sign-up-area label input {
+  font-size: 20px;
+}
+
+.sign-up .row .col-12 .sign-up-area textarea {
+  font-size: 20px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.sign-up .row .col-12 .sign-up-area .buttons .green-button a {
+  padding: 5px 15px;
+  font-size: 15px;
+}
+
+.subscribe-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.subscribe-area .title span {
+  font-size: 50px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.subscribe-area .email-container {
+  margin-top: 30px;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.subscribe-area .email-container input {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.subscribe-area .email-container a {
+  background-color: #16ce75;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 10px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.subscribe-area .email-container a:hover {
+  background-color: gray;
+}
+
+footer .row span {
+  font-size: 25px;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 20px;
+}
+
+footer .row .pic a img {
+  display: block;
+}
+
+footer .row .address-info {
+  display: block;
+  margin-top: 20px;
+}
+
+footer .row .address-info p {
+  color: #16ce75;
+  font-weight: bold;
+  display: inline;
+}
+
+footer .row .address-info a {
+  text-decoration: none;
+  color: gray;
+}
+
+footer .row .content a {
+  text-decoration: none;
+  display: block;
+  line-height: 2;
+  color: #a4a9b3;
+}
+
+footer .row .content a:hover {
+  color: #16ce75;
+}
+
+footer .row .content p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+footer .row .content .icon i {
+  color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 1em;
+  height: 40px;
+  width: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .row .content .icon a {
+  display: inline-block;
+  -webkit-transition: .5s;
+  transition: .5s;
+  border-radius: 50%;
+}
+
+footer .row .content .icon a:hover {
+  background-color: #16ce75;
 }
 /*# sourceMappingURL=1227Maikon.css.map */
