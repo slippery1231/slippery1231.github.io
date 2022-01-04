@@ -379,6 +379,8 @@ footer .row .address-info p {
 footer .row .address-info a {
   text-decoration: none;
   color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
 }
 
 footer .row .content a {
@@ -386,6 +388,7 @@ footer .row .content a {
   display: block;
   line-height: 2;
   color: #a4a9b3;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 footer .row .content a:hover {
@@ -424,5 +427,40 @@ footer .row .content .icon a {
 
 footer .row .content .icon a:hover {
   background-color: #16ce75;
+}
+
+.copyright {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.copyright span {
+  color: #5d6678;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.copyright span a {
+  text-decoration: none;
+  color: #16ce75;
+}
+
+.copyright .privacy {
+  position: absolute;
+  right: 30px;
+}
+
+.copyright .privacy a {
+  text-decoration: none;
+  color: #5d6678;
+  -webkit-transition: .5s;
+  transition: .5s;
+  margin-right: 20px;
+}
+
+.copyright .privacy a:hover {
+  color: #16ce75;
 }
 /*# sourceMappingURL=1227Maikon.css.map */
