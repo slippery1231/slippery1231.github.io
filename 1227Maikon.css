@@ -366,6 +366,7 @@ footer .row .pic a img {
 }
 
 footer .row .address-info {
+  font-style: normal;
   display: block;
   margin-top: 20px;
 }
