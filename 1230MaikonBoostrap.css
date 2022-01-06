@@ -1,0 +1,29 @@
+.webcolor {
+  background-color: #f8f9fa;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.webcolor:hover {
+  background-color: #1fde82;
+}
+
+.green-button {
+  background-color: #1fde82;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.green-button:hover {
+  background-color: gray;
+}
+
+.order-service {
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.order-service:hover {
+  background-color: #1fde82;
+}
+/*# sourceMappingURL=1230MaikonBoostrap.css.map */

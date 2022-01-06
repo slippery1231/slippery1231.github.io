@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>寶可夢圖鑑列表</h1>
+    <button id='button2'>載入寶可夢圖鑑列表btn2_onclick()</button>
+    <button id='button3'>載入寶可夢圖鑑列表btn3_addEventListener()</button>
+    <button id='add'>+1</button>
+    <button id='remove' onclick="removeOne()">-1</button>
+    <button id='reset' onclick="resetPokemon()">Reset</button>
+
+<script>
+    //變數宣告
+    let pokemonCount = 0;
+
+    //DOM宣告
+    let btn2 = document.getElementById("btn2");
+    let btn3 = document.getElementById("btn3");
+
+    //一開始就要執行
+    window.onload = function(){
+        btn2.onclick();
+        btn3.addEventListener();
+    }
+
+    
+</script>
+
+</body>
+</html>
