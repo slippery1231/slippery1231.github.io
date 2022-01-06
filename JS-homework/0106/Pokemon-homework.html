@@ -20,7 +20,7 @@
 
     <script>
         let container = document.getElementById('container');
-
+        let index = container.childElementCount;
         window.onload = setPokemon();
 
         //button1只會出現一張
@@ -64,15 +64,19 @@
         })
 
         //addOne
-        let index = 2;
+        // let index = 2;
         let btn4 = document.getElementById("add");
         btn4.addEventListener("click" , function(event){
+                index = container.childElementCount;
+                if(index != 898){
+                    index++;
+                }
                 let fileName = index.toString().padStart(3,'0');
                 let pathFile = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${fileName}.png`; 
                 let img = document.createElement("img");
                 img.setAttribute("src",pathFile);
                 container.appendChild(img);
-                index++;
+                // index+=1;
             
         })
 
@@ -80,7 +84,7 @@
         function removeOne(){
             if(index>0){
                 container.removeChild(container.lastChild);
-                index--;
+                index-=1;
             }     
         }
 

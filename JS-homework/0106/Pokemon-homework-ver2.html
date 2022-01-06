@@ -8,27 +8,68 @@
 </head>
 <body>
     <h1>寶可夢圖鑑列表</h1>
+    <button id="showAll">Show all</button>
     <button id='button2'>載入寶可夢圖鑑列表btn2_onclick()</button>
     <button id='button3'>載入寶可夢圖鑑列表btn3_addEventListener()</button>
     <button id='add'>+1</button>
-    <button id='remove' onclick="removeOne()">-1</button>
-    <button id='reset' onclick="resetPokemon()">Reset</button>
+    <button id='remove'>-1</button>
+    <button id='reset'>Reset</button>
 
+    <div class="container"></div>
 <script>
     //變數宣告
     let pokemonCount = 0;
 
     //DOM宣告
-    let btn2 = document.getElementById("btn2");
-    let btn3 = document.getElementById("btn3");
+    let container = document.getElementById('container');
+    let btn1 = document.getElementById('showAll');
+    let btn2 = document.getElementById('button2');
+    let btn3 = document.getElementById('button3');
+    let addBtn = document.getElementById('add');
+    let removeBtn = document.getElementById('remove');
+    let resetBtn = document.getElementById('reset');
 
     //一開始就要執行
     window.onload = function(){
-        btn2.onclick();
-        btn3.addEventListener();
+        btn2.onclick =function display(count){};
+        btn3.addEventListener('click',showAll);
+        addBtn.onclick = add;
+        removeBtn.onclick =remove;
+        resetBtn.onclick = reset;
     }
 
-    
+    //function宣告
+    function display(count){
+        let elements="";
+        for(let i = 1; i<= count ; i++){
+            // let fileName = i.toString().padStart(3,'0');
+            let pathFile = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${i.toString().padStart(3,'0')}.png`;
+            let element = `<img src = '${pathFile}'/>`;
+            elements += element;
+        }
+    }
+
+    function showAll(){
+        pokemonCount = 898;
+        display(pokemonCount);
+    }
+    //reset
+    function reset(){
+        pokemonCount = 0;
+        display(pokemonCount);
+    }
+
+    //add
+    function add(){
+        pokemonCount+=1;
+        display(pokemonCount);
+    }
+
+    //remove
+    function remove(){
+        pokemonCount-=1;
+        display(pokemonCount);
+    }
 </script>
 
 </body>
