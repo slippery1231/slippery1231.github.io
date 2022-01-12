@@ -26,4 +26,30 @@
 .order-service:hover {
   background-color: #1fde82;
 }
+
+.icon a i {
+  color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 1em;
+  height: 40px;
+  width: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.row {
+  outline: 2px solid red;
+}
+
+[class*='col-'] {
+  outline: 1px solid blue;
+}
 /*# sourceMappingURL=1230MaikonBoostrap.css.map */

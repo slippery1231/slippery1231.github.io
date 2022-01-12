@@ -18,3 +18,22 @@
         background-color: rgb(31,222,130);
     }
 }
+.icon a i{
+    color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 1em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    // flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.row{
+    outline: 2px solid red;
+}
+[class*='col-']{
+    outline: 1px solid blue;
+}
