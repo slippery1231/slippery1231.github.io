@@ -66,6 +66,8 @@
             drawPieChart(companies,data);
             createTHead();
             createTBody();
+            container.appendChild(table);
+            document.body.appendChild(container);
         }
     </script>
 
@@ -74,7 +76,7 @@
         function drawPieChart(companyArray, dataArray) {
             //Pie Chart圓餅圖
             let ctxPie = document.getElementById("mkShare");
-            var pieChart = new Chart(ctxPie, { //有兩個參數:ctsPie & 物件
+            var pieChart = new Chart(ctxPie, { //有兩個參數:ctxPie & 物件
                 type: 'doughnut',
                 data: {
                     labels: companyArray,
@@ -115,6 +117,8 @@
             });
         }
         
+        let container = document.createElement('div');
+        container.setAttribute('class','w-75 mx-auto text-center');
         //製作table
         //1.做thead:建立tr ->建立th&設定資料(資料為物件要先選出titles->titles做迭代)-> th加入thead->thead加入table
         let table = document.querySelector("table");
@@ -128,7 +132,6 @@
             });
             table.appendChild(theadTr);
         }
-            document.body.appendChild(table);
         //2.tbody: 建立tr ->做td&資料設定 ->抓出來的data為陣列包著物件->存取物件的value後再次迭代-> 迭代後的value丟入td->td丟入tr ->tr丟入tbody->tbody丟入table
         let tBody = document.createElement("tbody");
         function createTBody(titleArray, dataArray){
