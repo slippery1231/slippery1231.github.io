@@ -1,0 +1,33 @@
+[
+    {
+        "id" : 1,
+        "title": "iPadAir",
+        "color":[
+            {
+                "color":"spacegray",
+                "name":"太空灰",
+                "img":"/0113/ipad-air-select-wifi-spacegray-202009.png"
+            },
+            {
+                "color":"silver",
+                "name":"銀色",
+                "img":"/0113/ipad-air-select-wifi-silver-202009.png"
+            },
+            {
+                "color":"green",
+                "name":"綠色",
+                "img":"/0113/ipad-air-select-wifi-green-202009.png"
+            },
+            {
+                "color":"rosegold",
+                "name":"玫瑰金",
+                "img":"/0113/ipad-air-select-wifi-gold-202009.png"
+            },
+            {
+                "color":"blue",
+                "name":"天藍色",
+                "img":"/0113/ipad-air-select-wifi-blue-202009.png"
+            }
+        ]
+    }
+]
