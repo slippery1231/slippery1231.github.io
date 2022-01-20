@@ -73,6 +73,6 @@ button[aria-expanded='true'] {
 }
 
 .fas,.fab{
-    color: #fff;
+    color: #ccc;
     margin-top: 12px;
 }
