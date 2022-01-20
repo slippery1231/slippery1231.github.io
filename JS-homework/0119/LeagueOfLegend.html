@@ -83,12 +83,13 @@
             cloneCards.querySelector('.card-img-top').src = `https://cdngarenanow-a.akamaihd.net/games/lol/2020/LOLwebsite/champion/${hero.id}_0.jpg`
             cloneCards.querySelector('.card-text').innerText = hero.blurb.substring(0,30)+"..."
 
-            //按下面兩顆按鈕會發生什麼事
+            //按詳細按鈕要發生什麼事
             cloneCards.querySelector('#description').onclick = function(){
                 document.querySelector('#exampleModalLabel').innerText = hero.id + "-" +hero.name
                 document.querySelector('#modal-img').src =`https://cdngarenanow-a.akamaihd.net/games/lol/2020/LOLwebsite/champion/${hero.id}_0.jpg`
                 // document.querySelector('.modal-content').innerText = hero.blurb
             }
+            //按影片按鈕要發生的事
             cloneCards.querySelector('#video').onclick = function(){
                 document.querySelector('#exampleModalLabel').innerText = hero.id
             }
