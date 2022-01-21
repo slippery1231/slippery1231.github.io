@@ -47,11 +47,11 @@
                 </div>
                 <div class="modal-body">
                     <img src="" id="modal-img" alt="">
-                    <span class="modal-content d-block">1</span>
-                    <span class="modal-content d-block">2</span>
-                    <span class="modal-content d-block">3</span>
-                    <span class="modal-content d-block">4</span>
-                    <span class="modal-content d-block">5</span>
+                    <span class="modal-content d-block mt-3 border-0" id="hp"></span>
+                    <span class="modal-content d-block mt-3 border-0" id="movespeed"></span>
+                    <span class="modal-content d-block mt-3 border-0" id="armor"></span>
+                    <span class="modal-content d-block mt-3 border-0" id="spell"></span>
+                    <span class="modal-content d-block mt-3 border-0" id="attack"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -87,7 +87,11 @@
             cloneCards.querySelector('#description').onclick = function(){
                 document.querySelector('#exampleModalLabel').innerText = hero.id + "-" +hero.name
                 document.querySelector('#modal-img').src =`https://cdngarenanow-a.akamaihd.net/games/lol/2020/LOLwebsite/champion/${hero.id}_0.jpg`
-                // document.querySelector('.modal-content').innerText = hero.blurb
+                document.querySelector('#hp').innerText = `HP:${hero.stats.hp}`
+                document.querySelector('#movespeed').innerText = `Move Speed:${hero.stats.movespeed}`
+                document.querySelector('#armor').innerText = `Armor:${hero.stats.armor}`
+                document.querySelector('#spell').innerText = `Spell Block:${hero.stats.spellblock}`
+                document.querySelector('#attack').innerText = `Attack Range:${hero.stats.attackrange}`
             }
             //按影片按鈕要發生的事
             cloneCards.querySelector('#video').onclick = function(){
