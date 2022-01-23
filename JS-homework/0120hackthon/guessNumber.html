@@ -1,12 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>猜數字幾A幾B!</title>
 </head>
 <body>
+    <div class="container">
+        <h1 class="fs-1 text-center mt-3">歡迎來到猜數字遊戲</h1>
+        <div class="btn-group mt-3 d-flex" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-primary" id="start">Start</button>
+            <button type="button" class="btn btn-outline-warning" id="ans">Look up the Ans</button>
+            <button type="button" class="btn btn-outline-danger" id="reset">Give Up</button>
+        </div>
+        <div class="mt-3" id="game-history">
+        </div>
+        <div class="input-group mt-3">
+            <input type="text" class="form-control" id="input" placeholder="請輸入四個不重複的正整數" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="guess">猜起來</button>
+        </div>
+    </div>
+
+    <script>
+        let guess = [] //放猜測的容器 
+        let ans = [] //放正確答案的容器
+
+        //DOM
+        const startBtn = document.querySelector('#start')
+        const ansBtn = document.querySelector('#ans')
+        const resetBtn = document.querySelector('#reset')
+        const inputArea = document.querySelector('#input')
+        const gameHistory = document.querySelector('#game-history')
+        const guessBtn = document.querySelector('#guess')
+
+        //window.onload
+        window.onload = function(){
+            //一開始的按鈕設定
+            guessBtn.disabled = true
+            resetBtn.disabled = true
+            ansBtn. disabled = true
+            //開始遊戲
+            startBtn.onclick = function(){
+                ans = getNum()
+                console.log(ans)
+                alert('數字已準備好，勇者請開始')
+                guessBtn.disabled = false
+                resetBtn.disabled = false
+                ansBtn. disabled = false
+                startBtn.disabled = true
+
+                
+
+            }
+            //看答案
+            ansBtn.onclick = function(){
+                showAns()
+            }
+            //放棄
+            resetBtn.onclick = function(){
+                //清空歷史紀錄、跳出重新開始資訊、裝答案容器要清空、輸入框要清空
+                reset()
+                startBtn.disabled = false
+                ansBtn. disabled = true
+                guessBtn.disabled = true
+                resetBtn.disabled = true
+
+            }
+
+            //猜
+            guessBtn.onclick = function(){
+                check()
+                inputArea.value = ""
+                
+
+            }
+        }
+
+        //function
+        function getNum(){
+            let randomResult = [] //放產生亂數的容器
+            while(randomResult.length !=4){
+                let randomNum = Math.floor(Math.random()*10)
+                if(!randomResult.includes(randomNum)){
+                    randomResult.push(randomNum)
+                }
+            }
+            return randomResult
+        }
+
+        function showAns(){
+            alert('想偷看答案?')
+            alert('答案是'+ ans.join(','))
+            alert('請按start重新開始')
+                startBtn.disabled = false
+                ansBtn. disabled = true
+                guessBtn.disabled = true
+                resetBtn.disabled = true
+        }
+
+        function reset(){
+            gameHistory.innerText = ""
+            inputArea.value = ""
+            ans = []
+            alert('人生不能就這樣放棄阿')
+            alert("請按Start重新開始遊戲")
+        }
+
+        function check(){
+            //1.輸入判斷 :1.輸入長度不為4； 2.輸入有重複數字； 3.輸入非數字:注音、英文、符號、小數
+            guess = inputArea.value.split('').map(x=>parseInt(x))
+            if(guess.length !=4 || guess.includes(NaN)){
+                alert('賣來亂噢')
+            }
+            else if ([...new Set(guess)].length !=4){
+                // Set 中元素不會重複的特性
+                alert('你是不是想輸入重複的數字?被我抓到了吧')
+            }
+            // else if(guess.filter((x,index,arr)=>arr.indexOf(x)==index).legnth!=4){
+            //     alert('你是不是想輸入重複的數字?被我抓到了吧')
+            // }
+            //2.判斷有沒有交集
+            else{
+                let intersect = guess.filter(x=>ans.indexOf(x)!= -1)
+                //判斷AB
+                let a = intersect.filter(x=>ans.indexOf(x) == guess.indexOf(x)).length
+                let b = intersect.length - a
     
+                const showAB = document.createElement('span')
+                const ansRecord = document.createElement('span')
+                const recordContainer = document.createElement('div')
+                recordContainer.classList.add('p-2','border','border-bottom')
+                //AB標籤設計
+                if(a==4){
+                    showAB.classList.add('badge','bg-success')
+                    alert('恭喜過關，請按start重新開始')
+                    startBtn.disabled = false
+                    ansBtn. disabled = true
+                    guessBtn.disabled = true
+                    resetBtn.disabled = true
+
+                }
+                else{
+                    showAB.classList.add('badge','bg-danger')
+                }
+                showAB.innerText = `${a}A${b}B`
+                ansRecord.innerText = guess.join('')
+                recordContainer.append(showAB,ansRecord)
+                gameHistory.append(recordContainer)
+            }
+        }
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>
