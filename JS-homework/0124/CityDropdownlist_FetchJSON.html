@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>下拉式選單製作</title>
+</head>
+<body>
+    <h1>Fetch & DropdownList</h1>
+    <select name="city" id="city"></select>
+    <select name="district" id="district" disabled></select>
+
+    <input class="btn bg-primary" type="submit" value="提交資料" id="submit" onclick="submitData()" disabled>
+    <div id='show-area'></div>
+
+    <script>
+        const url = `https://raw.githubusercontent.com/slippery1231/FileStorage/main/TaiwanAddress_Simple.json`
+
+        //#region  //DOOOOOOOOOOOM
+        const citySelect = document.querySelector('#city')
+        const districtSelect = document.querySelector('#district')
+        const submit = document.querySelector('#submit')
+        const showArea = document.querySelector('#show-area')
+        let cityNameArr =[]
+        let selectedCityText
+        //#endregion
+
+        //#region  window.onload
+        window.onload = function(){
+            fetchJSON(url)
+        }
+        //#endregion
+
+
+        //#region //fetch抓起來阿這裡抓到的是縣市
+        function fetchJSON(urlPath){
+            fetch(urlPath)
+            .then(response=>response.json())
+            .then(result=>{result.forEach(item=>{
+                const option = document.createElement('option')
+                option.innerText = item.CityName
+                citySelect.appendChild(option)
+                cityNameArr.push(item)
+            })
+            })
+        }
+        //#endregion
+
+        //#region city選擇連動行政區
+        citySelect.onchange = function citySelectionChange(event){
+            districtSelect.disabled = false
+            selectedCityText = citySelect.selectedOptions[0].text
+            districtSelect.length = 1
+            let selected = cityNameArr.filter(x=>x.CityName == selectedCityText)[0]
+            selected.AreaList.forEach(item=>{
+                const districtOption = document.createElement('option')
+                districtOption.innerText = `${item.ZipCode} ${item.AreaName}`
+                districtSelect.append(districtOption)
+            })
+        }
+        //#endregion
+
+        //#region //選縣市
+        const option2 = document.createElement('option')
+        option2.value = ""
+        option2.text = '---請選擇縣市---'
+        option2.setAttribute('selected','')
+        citySelect.add(option2,0)
+        //#endregion
+
+        //#region 選行政區
+        const option3 = document.createElement('option')
+        option3.value =""
+        option3.text = '---請選擇行政區---'
+        option3.setAttribute('selected','')
+        districtSelect.add(option3,0)
+        //#endregion
+    
+        //#region 判斷submit按鈕啟動與否
+        districtSelect.onchange = function(){
+
+            if(districtSelect.selectedOptions[0].text !='---請選擇行政區---'){
+                submit.disabled = false
+            }
+            else{
+                submit.disabled = true
+            }
+        }
+        //#endregion
+    
+        //#region submitData
+        function submitData(){
+            alert(`選到的是: ${citySelect.selectedOptions[0].text} - ${districtSelect.selectedOptions[0].text}`)
+        }
+
+        //#endregion
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
