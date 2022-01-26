@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Calculator!</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 75%;
+            text-align: center;
+            outline: 2px solid yellow;
+        }
+        #cal-history,#cal-display{
+            background-color: #041936; 
+            width: 400px;
+            height: 50px;
+            background-color: #041936;
+            font-style: bold;
+            /* direction: rtl; */
+        }
+        .numBtn,.operatorBtn,#AC,#backSpace,#decimal{
+            width: 60px;
+            
+        }
+        .num{
+            width: 400px;
+            /* outline: 2px solid blue; */
+            background-color: #062145;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="UI mt-3 my-0">
+            <table class="mx-auto">
+                <tr>
+                    <th><input class="border border-2 border-dark fs-3 rounded-3 text-light" id="cal-history" disabled></th>
+                </tr>
+                <tr>
+                    <th><input class="border border-2 border-dark fs-3 rounded-3 text-light" id="cal-display" disabled></th>
+                </tr>
+            </table>
+        </div>
+        <div class="buttons">
+            <table class="num mx-auto border border-dark border-2 rounded-3">
+                <tbody>
+                    <tr>
+                        <td><button class="btn bg-primary btn-lg mb-4 mt-4 justify-content-evenly operatorBtn">%</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 mt-4 justify-content-evenly operatorBtn">√</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 mt-4 justify-content-evenly" id="backSpace">⌫</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 mt-4 justify-content-evenly operatorBtn">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">1</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">2</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">3</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 operatorBtn">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">4</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">5</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">6</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 operatorBtn">x</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">7</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">8</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">9</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 operatorBtn">÷</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn bg-primary btn-lg mb-4" id="AC">AC</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4 numBtn">0</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4" id="decimal">.</button></td>
+                        <td><button class="btn bg-primary btn-lg mb-4" id="equal">=</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        //DOM
+        const operatorBtn = document.querySelectorAll('.operatorBtn')//加減乘除、根號、等號、百分比
+        const numBtn = document.querySelectorAll('.numBtn')//數字們
+        const AC = document.querySelector('#AC')//清除鍵
+        const equalBtn = document.querySelector('#equal')
+        const backSpace = document.querySelector('#backSpace') //倒退嚕
+        const calHistory = document.querySelector('#cal-history') //計算過程
+        const calDisplay = document.querySelector('#cal-display')//計算顯示區
+        const calculateMethods =[
+            {sign:'+' , func:function(a,b){a+b}},
+            {sign:'-' , func:function(a,b){a-b}},
+            {sign:'x' , func:function(a,b){a*b}},
+            {sign:'÷' , func:function(a,b){a/b}}
+        ]
+        let currentSign = ''
+        let numFirst = 0
+        let numSecond = 0
+
+        //window
+        window.onload = function(){
+            getNumValue()
+            AC.onclick = clear
+            backSpace.onclick = back
+            equalBtn.onclick = equal
+        }
+
+        //function
+        //數字鍵
+        function getNumValue(){
+            numBtn.forEach(num=>{
+                num.onclick = function(){
+                    calDisplay.value += num.innerText
+                    calHistory.value += num.innerText
+                }
+            })
+        }
+        //AC:清掉顯示畫面所有東西
+        function clear(){
+            calDisplay.value = ''
+            calHistory.value = ''
+        }
+        //backspace
+        function back(){
+            let arr = document.querySelector('#cal-display')
+            arr.value = arr.value.substring(0,arr.length-1)
+            debugger
+            if(arr ===''){
+                arr.value = '0'
+            }
+            else{
+                calHistory.value = arr.value
+                calDisplay.value = arr.value
+            }
+        }
+        //符號
+        operatorBtn.forEach(btn=>{
+            btn.onclick = function(){
+                currentSign = btn.innerText
+                numFirst = parseFloat(calDisplay.value)
+                calDisplay.value = ""
+                calHistory.value += currentSign
+            }
+        })
+        //equal
+        function equal(){
+            numSecond = parseFloat(calDisplay.value)
+            let calculate = calculateMethods.find(x=>x.sign == currentSign)
+            let ans = calculate.func(numFirst,numSecond)
+            debugger
+            calDisplay.value = ans
+        }
+            
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
