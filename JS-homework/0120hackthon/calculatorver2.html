@@ -96,7 +96,9 @@
             {sign:'+' , func:function(a,b){a+b}},
             {sign:'-' , func:function(a,b){a-b}},
             {sign:'x' , func:function(a,b){a*b}},
-            {sign:'÷' , func:function(a,b){a/b}}
+            {sign:'÷' , func:function(a,b){a/b}},
+            {sign:'%' , func:function(a){a/100}},
+            {sign:'√' , func:function(a){Math.sqrt(a)}}
         ]
         let currentSign = ''
         let numFirst = 0
@@ -107,7 +109,7 @@
             getNumValue()
             AC.onclick = clear
             backSpace.onclick = back
-            equalBtn.onclick = equal
+
         }
 
         //function
@@ -125,36 +127,40 @@
             calDisplay.value = ''
             calHistory.value = ''
         }
-        //backspace
+        
+        //backspace //bug:無法歸零
         function back(){
-            let arr = document.querySelector('#cal-display')
-            arr.value = arr.value.substring(0,arr.length-1)
-            debugger
+            let arr = document.querySelector('#cal-display').value
+            arr= arr.substring(0,arr.length-1)
+            // debugger
             if(arr ===''){
-                arr.value = '0'
+                arr = '0'
             }
             else{
-                calHistory.value = arr.value
-                calDisplay.value = arr.value
+                calHistory.value = arr
+                calDisplay.value = arr
             }
         }
-        //符號
-        operatorBtn.forEach(btn=>{
-            btn.onclick = function(){
-                currentSign = btn.innerText
-                numFirst = parseFloat(calDisplay.value)
-                calDisplay.value = ""
-                calHistory.value += currentSign
+
+            //符號
+            operatorBtn.forEach(btn=>{
+                btn.onclick = function(){
+                    currentSign = btn.innerText
+                    numFirst = parseFloat(calDisplay.value)
+                    calDisplay.value = ""
+                    calHistory.value += currentSign
+                }
+            })
+
+            //equal
+            equalBtn.onclick = function(){
+                numSecond = parseFloat(calDisplay.value)
+                let calculate = calculateMethods.find(x=>x.sign == currentSign)
+                let ans = calculate.func(numFirst,numSecond)
+                // debugger
+                calDisplay.value = ans
             }
-        })
-        //equal
-        function equal(){
-            numSecond = parseFloat(calDisplay.value)
-            let calculate = calculateMethods.find(x=>x.sign == currentSign)
-            let ans = calculate.func(numFirst,numSecond)
-            debugger
-            calDisplay.value = ans
-        }
+
             
 
 
