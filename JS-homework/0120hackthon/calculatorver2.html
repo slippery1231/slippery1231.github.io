@@ -93,12 +93,12 @@
         const calHistory = document.querySelector('#cal-history') //計算過程
         const calDisplay = document.querySelector('#cal-display')//計算顯示區
         const calculateMethods =[
-            {sign:'+' , func:function(a,b){a+b}},
-            {sign:'-' , func:function(a,b){a-b}},
-            {sign:'x' , func:function(a,b){a*b}},
-            {sign:'÷' , func:function(a,b){a/b}},
-            {sign:'%' , func:function(a){a/100}},
-            {sign:'√' , func:function(a){Math.sqrt(a)}}
+            {sign:'+' , func:function(a,b){return a+b}},
+            {sign:'-' , func:function(a,b){return a-b}},
+            {sign:'x' , func:function(a,b){return a*b}},
+            {sign:'÷' , func:function(a,b){return a/b}},
+            {sign:'%' , func:function(a){ return a/100}},
+            {sign:'√' , func:function(a){return Math.sqrt(a)}}
         ]
         let currentSign = ''
         let numFirst = 0
@@ -157,7 +157,7 @@
                 numSecond = parseFloat(calDisplay.value)
                 let calculate = calculateMethods.find(x=>x.sign == currentSign)
                 let ans = calculate.func(numFirst,numSecond)
-                // debugger
+                debugger
                 calDisplay.value = ans
             }
 
