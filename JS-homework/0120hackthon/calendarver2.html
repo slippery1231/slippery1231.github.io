@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>日曆</title>
+</head>
+<body>
+    <h1 class="year-month">0000年00月</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>日</th>
+                <th>一</th>
+                <th>二</th>
+                <th>三</th>
+                <th>四</th>
+                <th>五</th>
+                <th>六</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 動態生成日期 -->
+        </tbody>
+    </table>
+
+    <!--新增MODAL  -->
+    <div class="modal fade" id="add-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">新增</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="add-date">
+                    <input type="text" id="add-title">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addTodoItem()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改MODAL  -->
+    <div class="modal fade" id="edit-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">編輯</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="edit-date">
+                    <input type="text" id="edit-title">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="editTodoItem()">編輯</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteTodoItem()">刪除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="previousMonth()">Previous</button>
+    <button class="btn btn-primary" onclick="nextMonth()">Next</button>
+
+    <script>
+        //今天
+        const today = new Date()
+
+        //年月日
+        let year = today.getFullYear()
+        let month = today.getMonth()
+        let date = today.getDate()
+
+        let currentTodoIndex
+
+        //DOM
+        const yearMonthText = document.querySelector('.year-month')
+        const dateArea = document.querySelector('tbody')
+
+        const addModal = document.querySelector('#add-modal')
+        const editModal = document.querySelector('#edit-modal')
+
+        const addDateInput = document.querySelector('#add-date')
+        const addTitleInput = document.querySelector('#add-title')
+
+        const editDateInput = document.querySelector('#edit-date')
+        const editTitleInput = document.querySelector('#edit-title')
+        //window
+        window.onload = function(){
+            init()
+        }
+        
+    function init(){
+        // 渲染新月份要清空
+        dateArea.innerHTML =""
+        yearMonthText.innerText = `${year}年-${month+1}月`
+        
+        //這個月第一天是星期幾
+        let firstDay = new Date(year, month , 1).getDay()
+        
+        //判斷這個月有幾天->知道月份的最夠一天是幾號就可以了 ->下個月的第0天
+        let dayOfMonth = new Date(year, month+1, 0).getDate()
+
+        let day = 1
+        let nextMonthDay = 1
+        let rows = Math.ceil((dayOfMonth + firstDay)/7)
+
+        for(let row = 0 ; row < rows ; row++){
+            let tr = document.createElement('tr') //控制tr生成
+            for(let col = 0 ; col < 7 ; col++){
+                let td = document.createElement('td') //控制td
+                if(row == 0 && col < firstDay){
+                    //上個月的日期
+                    td.innerText = "a"
+                }
+                else{
+                    //這個月
+                    if(day <= dayOfMonth){
+                        // 這個月
+                        td.innerText = day
+
+                        //讓代辦事項可以出現在日曆上面
+                        if(localStorage.getItem(`${year}-${month+1}-${day}`)!=null){ //當天已經有行程
+                            let ul = document.createElement('ul')
+
+                            let todoList = JSON.parse(localStorage.getItem(`${year}-${month+1}-${day}`))
+                            todoList.forEach((item,index) => {
+                                let li = document.createElement('li')
+                                li.innerText = item.title
+                                li.onclick = function(event){ //點li可以編輯
+                                    bootstrap.Modal.getOrCreateInstance(editModal).show()
+                                    currentTodoIndex = index
+                                    editDateInput.value = `${year}-${month+1}-${td.childNodes[0].data}`
+                                    editTitleInput.value = item.title
+
+                                    event.stopPropagation()  //因為td包li，按下li時會連同觸發td的click事件->用event.stopPropagation阻止
+                                }
+                                ul.appendChild(li)
+                            })
+                            td.appendChild(ul)
+                        }
+                        td.onclick = function(){
+                            bootstrap.Modal.getOrCreateInstance(addModal).show() //用js把modal叫出來
+                            addDateInput.value = `${year}-${month+1}-${td.childNodes[0].data}`
+                        }
+                    }
+                    else{
+                        // 下個月
+                        td.innerText = `${nextMonthDay}`
+                        nextMonthDay++
+                    }
+                    day++
+                }
+                tr.appendChild(td)
+            }
+            dateArea.appendChild(tr)
+        }
+    }
+
+    function previousMonth(){
+        month--
+        if(month==-1){
+            month =11
+            year--
+        }
+        init()
+    }
+    function nextMonth(){
+        month++
+        if(month== 12){
+            month = 0
+            year++
+        }
+        init()
+    }
+
+    //新增行程
+    function addTodoItem(){
+        let date = addDateInput.value
+        let todoItem = addTitleInput.value
+
+        let todoObj = {
+            title:todoItem
+        }
+        let todoList = []
+        if(localStorage.getItem(date)== null){ //確認localstorge是否已存有行程
+            //原本沒有行程
+            todoList.push(todoObj)
+        }
+        else{
+            //已經有行程了
+            todoList = JSON.parse(localStorage.getItem(date))
+            todoList.push(todoObj)
+        }
+        localStorage.setItem(date, JSON.stringify(todoList))
+        bootstrap.Modal.getOrCreateInstance(addModal).hide()
+        init()
+    }
+
+    //修改行程
+    function editTodoItem(){
+        let date = editDateInput.value
+        let todoItem = editTitleInput.value
+
+        let todoList = JSON.parse(localStorage.getItem(date)) //去localstorage找已經存在的行程
+        todoList[currentTodoIndex] = {title: todoItem}
+
+        localStorage.setItem(date,JSON.stringify(todoList)) //把修改完的東西存回localstorage
+        bootstrap.Modal.getOrCreateInstance(editModal).hide()
+        init()
+
+    }
+
+    //刪除行程
+    function deleteTodoItem(){
+        let date = editDateInput.value
+
+        let todoList = JSON.parse(localStorage.getItem(date))
+        todoList.splice(currentTodoIndex,1) //把被選到的行程刪掉
+        localStorage.setItem(date,JSON.stringify(todoList))
+        bootstrap.Modal.getOrCreateInstance(editModal).hide()
+        init()
+
+    }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
