@@ -98,7 +98,7 @@
             {sign:'x' , func:function(a,b){return a*b}},
             {sign:'÷' , func:function(a,b){return a/b}},
             {sign:'%' , func:function(a){ return a/100}},
-            {sign:'√' , func:function(a){return Math.sqrt(a)}}
+            {sign:'√' , func: (a) => Math.sqrt(a)}  //用arrow function就不用return
         ]
         let currentSign = ''
         let numFirst = 0
@@ -132,7 +132,6 @@
         function back(){
             let arr = document.querySelector('#cal-display').value
             arr= arr.substring(0,arr.length-1)
-            // debugger
             if(arr ===''){
                 arr = '0'
             }
@@ -157,7 +156,6 @@
                 numSecond = parseFloat(calDisplay.value)
                 let calculate = calculateMethods.find(x=>x.sign == currentSign)
                 let ans = calculate.func(numFirst,numSecond)
-                debugger
                 calDisplay.value = ans
             }
 
