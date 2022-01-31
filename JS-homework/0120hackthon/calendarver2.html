@@ -165,6 +165,7 @@
 
         let day = 1
         let nextMonthDay = 1
+        let lastMonthDays = new Date(year, month , 0).getDate()
         let rows = Math.ceil((dayOfMonth + firstDay)/7)
 
         for(let row = 0 ; row < rows ; row++){
@@ -174,6 +175,7 @@
                 if(row == 0 && col < firstDay){
                     //上個月的日期
                     td.innerText = ""
+                    // td.innerText = `${lastMonthDays - firstDay +1}`
                     // td.classList.add('opacity-50')
                 }
                 else{
