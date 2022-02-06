@@ -42,11 +42,13 @@
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="country">縣/市</label>
-                        <select name="" id="country" class="form-control"></select>
+                        <select name="" id="country" class="form-control">
+                            <!-- optionssssss -->
+                        </select>
                     </div>
                 </div>
                 <div class="row">
-                    <h2 class="w-100 text-center"><strong></strong>台灣綠色餐廳資料</h2>
+                    <h2 class="w-100 text-center"><strong></strong>綠色餐廳資料</h2>
                     <div class="col-12">
                         <table class="table table-border table-striped text-center">
                             <thead>
@@ -120,12 +122,12 @@
                     //地圖標籤
                     setMarker()
 
-                    //下拉選單
-                    let dropDown = ['請選擇行政區'].concat([...new Set(districtData.map(x=>x.City))])
+                    //下拉選單初始化
+                    let dropDown = ['請選擇縣市'].concat([...new Set(districtData.map(x=>x.City))])
                     dropDown.forEach(x=>{
                         let option = document.createElement('option')
                         option.innerText = x
-                        option.value = x == '請選擇行政區' ?'': x
+                        option.value = x == '請選擇縣市' ?'': x
                         countrySelect.appendChild(option)
                     })
                 })
@@ -170,8 +172,8 @@
             }
             Object.keys(distGreenData).forEach(x=>{
                 let data = distGreenData[x]
-
-                let marker = L.marker(data[0].Lat, data[0].Lng)
+                console.log(data)
+                let marker = L.marker([data[0].Lat, data[0].Lng])
                 marker.bindPopup(
                     `<h4>${data[0].County}${data[0].Town}</h4>
                     <p>${data[0].Name}</p>`
@@ -181,9 +183,25 @@
                     distText.innerText = `${data[0].County}${data[0].Town}`
 
                     tableBody.innerHTML = ''
-                })
 
+                    let restaurantTr
+                    
+                    data.forEach(x=>{
+                        restaurantTr = document.createElement('tr')
+                        let NameTd = document.createElement('td')
+                        let AddressTd = document.createElement('td')
+                        let PhoneTd = document.createElement('td')
+                        NameTd.innerText = x.Name
+                        AddressTd.innerText = x.Address
+                        PhoneTd.innerText = x.Phone
+                        // console.log(NameTd)
+                        restaurantTr.append(NameTd,AddressTd,PhoneTd)
+                    })
+                    tableBody.appendChild(restaurantTr)
+                })
+                markers.addLayer(marker)
             })
+            map.addLayer(markers)
         }
     
     
