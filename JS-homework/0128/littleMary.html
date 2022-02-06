@@ -10,6 +10,13 @@
     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <title>今晚想來點...</title>
     <style>
+        body{
+            background-image: url("/0128/background.jpg");
+            background-size: 100%;
+            /* background-color: rgb(255, 255, 255,.9); */
+            background-color: rgb(180, 176, 176, 0.6);
+            background-blend-mode: multiply;
+        }
         i{
             font-size: 48px;
         }
@@ -66,8 +73,8 @@
             <div class="col-10 d-flex mt-3">
                 <div class="col-5 content ">
                     <h1 class="mx-auto"></h1>
-                    <p id="msg" class="fs-4"></p>
-                    <p id="content"></p>
+                    <p id="msg" class="fs-3"></p>
+                    <p id="content" class="fs-5"></p>
                 </div>
                 <div class="col-5">
                     <img src="" alt="" class="">
@@ -114,7 +121,6 @@
             <button class="btn bg-primary fs-3 p-0 fw-bold">START</button>
         </div>
     </div>
-
     <script>
         //格子
         let brickData = [
@@ -487,7 +493,7 @@
         let p = document.querySelector('#content')
 
         //window onload
-        alert('是不是不知道吃什麼呢?快按下按鈕幫你決定!')
+        // alert('是不是不知道吃什麼呢?快按下按鈕幫你決定!')
         window.onload = function(){
             img.setAttribute('src',`/0128/default.jpg`)
             img.setAttribute('alt','default')
