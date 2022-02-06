@@ -3,13 +3,192 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"></script>
 
-    <title>Hello, world!</title>
+    <title>綠色餐廳環境即時通地圖資料</title>
+    <style>
+        .container-fluid > .row{
+            height: 100vh;
+        }
+        #map{
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, world!</h1>
+    <div class="container-fluid">
+        <div class="row py-3">
+            <div class="col-6">
+                <div id="map">
+                    <!-- 放地圖 -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="country">縣/市</label>
+                        <select name="" id="country" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2 class="w-100 text-center"><strong></strong>台灣綠色餐廳資料</h2>
+                    <div class="col-12">
+                        <table class="table table-border table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th>店名</th>
+                                    <th>地址</th>
+                                    <th>電話</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 內容動態生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //宣告
+        let map
+        //行政區經緯度資料
+        let districtDataRequest = axios.get('https://raw.githubusercontent.com/slippery1231/FileStorage/main/TaiwanZipcode')
+        //綠色餐廳資料
+        let greenDataRequest = axios.get('https://raw.githubusercontent.com/slippery1231/FileStorage/main/%E7%B6%A0%E8%89%B2%E9%A4%90%E5%BB%B3')
+
+        let districtData //行政區經緯
+        let greenData //綠色餐廳
+        let distGreenData //綠色餐廳+經緯度資料
+        let markers = L.markerClusterGroup()//叢集
+
+        //DOOOOOOOM
+        const countrySelect = document.querySelector('#country')
+        const distText = document.querySelector('strong')
+        const tableBody = document.querySelector('tbody')
+
+        //window.onload
+        window.onload = function(){
+            setMap()
+
+            //確認是否抓到資料
+            Promise.all([districtDataRequest,greenDataRequest])
+                .then(response=>{
+                    console.log(response)
+                    let [districtRes,greenRes] = response
+                    console.log(districtRes)
+                    console.log(greenRes)
+
+                    //district
+                    districtData = districtRes.data
+                    greenData = greenRes.data.records
+                    console.log(greenData)
+
+                    //合併經緯&餐廳資料 county縣市;town行政區
+                    distGreenData = greenData.map(x=>{
+                        let dist = districtData.find(y=>y.City == x.County && y.District == x.Town)
+                        return {
+                            CountryTown : x.County + x.Town,
+                            County : x.County,
+                            Town :x.Town,
+                            Address : x.Address,
+                            Name : x.Name,
+                            Phone : x.Phone,
+                            Lat : dist != undefined ? dist.Lat : undefined,
+                            Lng : dist != undefined ? dist.Lng:undefined
+                        }
+                    }).filter(x=>x.Lat != undefined).groupBy('CountryTown')
+                    console.log(distGreenData)
+
+                    //地圖標籤
+                    setMarker()
+
+                    //下拉選單
+                    let dropDown = ['請選擇行政區'].concat([...new Set(districtData.map(x=>x.City))])
+                    dropDown.forEach(x=>{
+                        let option = document.createElement('option')
+                        option.innerText = x
+                        option.value = x == '請選擇行政區' ?'': x
+                        countrySelect.appendChild(option)
+                    })
+                })
+
+                //下拉改變
+                countrySelect.onchange = function(){
+                    if(countrySelect.value !=''){
+                        let country = districtData.find(x=>x.City == countrySelect.value)
+                        map.setView([country.Lat,country.Lng],12)
+                    }
+                }
+        }
+        
+
+        //function
+        //地圖設定
+        function setMap(){
+            map = L.map('map',{
+                center:[25.03416068163684, 121.56454962636319],
+                zoom:9
+            })
+
+            //圖資設定
+            let osmUrl = `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`
+            let osm = new L.TileLayer(osmUrl,{minZoom:3, maxZoom:19}) //設定圖資放大的倍數
+            map.addLayer(osm) //把osm加到map中
+        }
+
+        //自定義groupBy
+        Array.prototype.groupBy = function(prop){
+            return this.reduce(function(groups,item){
+                const val = item[prop]
+                groups[val] = groups[val] || []
+                groups[val].push(item)
+                return groups
+            },{})
+        }
+    
+        function setMarker(){
+            if(markers){
+                markers.clearLayers()
+            }
+            Object.keys(distGreenData).forEach(x=>{
+                let data = distGreenData[x]
+
+                let marker = L.marker(data[0].Lat, data[0].Lng)
+                marker.bindPopup(
+                    `<h4>${data[0].County}${data[0].Town}</h4>
+                    <p>${data[0].Name}</p>`
+                )
+
+                marker.addEventListener('click',function(){
+                    distText.innerText = `${data[0].County}${data[0].Town}`
+
+                    tableBody.innerHTML = ''
+                })
+
+            })
+        }
+    
+    
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
