@@ -3,13 +3,547 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <title>今晚想來點...</title>
+    <style>
+        i{
+            font-size: 48px;
+        }
+        [box-id]{
+            height: 80px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            border:none;
+            transition: .3s;
+        }
+        [box-id].active{
+            border: 5px yellow solid;
+            box-shadow:  0 0 20px red;
+            transition: 0s;
+        }
+        #msg{
+            font-size: 36px;
+            text-align: center;
+        }
+        .middle{
+            height: 80px;
+            /* border: 2px solid red; */
+            text-align: center;
+        }
+        img{
+            width: 350px;
+            height: 250px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container mt-5">
+        <!-- row1 -->
+        <div class="row">
+            <div box-id= "1" class="col-1"></div>
+            <div box-id= "2" class="col-1"></div>
+            <div box-id= "3" class="col-1"></div>
+            <div box-id= "4" class="col-1"></div>
+            <div box-id= "5" class="col-1"></div>
+            <div box-id= "6" class="col-1"></div>
+            <div box-id= "7" class="col-1"></div>
+            <div box-id= "8" class="col-1"></div>
+            <div box-id= "9" class="col-1"></div>
+            <div box-id= "10" class="col-1"></div>
+            <div box-id= "11" class="col-1"></div>
+            <div box-id= "12" class="col-1"></div>
+        </div>
+        <!-- row2 -->
+        <div class="row middle">
+            <div box-id="32" class="col-1"></div>
+            <!-- <div class="col-10">
+            </div> -->
+            <div class="col-10 d-flex mt-3">
+                <div class="col-5 content ">
+                    <h1 class="mx-auto"></h1>
+                    <p id="msg" class="fs-4"></p>
+                    <p id="content"></p>
+                </div>
+                <div class="col-5">
+                    <img src="" alt="" class="">
+                </div>
+            </div>
 
+
+            <div box-id="13" class="col-1"></div>
+        </div>
+        <!-- row3 -->
+        <div class="row middle">
+            <div box-id="31" class="col-1"></div>
+            <div class="col-10"></div>
+            <div box-id="14" class="col-1"></div>
+        </div>
+        <!-- row4 -->
+        <div class="row middle">
+            <div box-id="30" class="col-1"></div>
+            <div class="col-10"></div>
+            <div box-id="15" class="col-1"></div>
+        </div>
+        <!-- row5 -->
+        <div class="row middle">
+            <div box-id="29" class="col-1"></div>
+            <div class="col-10"></div>
+            <div box-id="16" class="col-1"></div>
+        </div>
+        <!-- row6 -->
+        <div class="row">
+            <div box-id="28" class="col-1"></div>
+            <div box-id="27" class="col-1"></div>
+            <div box-id="26" class="col-1"></div>
+            <div box-id="25" class="col-1"></div>
+            <div box-id="24" class="col-1"></div>
+            <div box-id="23" class="col-1"></div>
+            <div box-id="22" class="col-1"></div>
+            <div box-id="21" class="col-1"></div>
+            <div box-id="20" class="col-1"></div>
+            <div box-id="19" class="col-1"></div>
+            <div box-id="18" class="col-1"></div>
+            <div box-id="17" class="col-1"></div>
+        </div>
+        <div class="row col-12">
+            <button class="btn bg-primary fs-3 p-0 fw-bold">START</button>
+        </div>
+    </div>
+
+    <script>
+        //格子
+        let brickData = [
+            {
+                id:'1',
+                color:'red',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://static.wixstatic.com/media/55382e_99b3826a164749c4afca2a130fea8118~mv2.png/v1/fill/w_380,h_258,al_c,q_85,usm_0.66_1.00_0.01/%E5%8E%BB%E8%83%8C%E8%B1%AC%E6%8E%92%E5%AE%9A%E9%A3%9F_%E9%99%B0%E5%BD%B1.webp`)
+                    img.setAttribute('class','me-0')
+                    h1.innerText = '吉豚屋'
+                    p.innerText = '份量大到飽到天靈蓋'
+                    return '里肌豬排定食'
+                }
+            },
+            {
+                id:'2',
+                color:'orange',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.sushiro.com.tw/Upload/Dish/2dc0cc4e-b6b1-4132-8caf-86a74590a4b0.png`)
+                    h1.innerText = '壽司郎'
+                    p.innerText = '唇齒留香阿'
+                    return '炙烤鹽味生鮭'
+                }
+            },
+            {
+                id:'3',
+                color:'yellow',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://bigbro.tw/wp-content/uploads/2021/05/20210513185042_55.jpeg`)
+                    h1.innerText = '五十嵐'
+                    p.innerText = '經典中的經典不要錯過'
+                    return '1號無糖去冰'
+                }
+            },
+            {
+                id:'4',
+                color:'green',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://www.starbucks.com.tw/common/objects/images/product/20210930154125366.jpg`)
+                    h1.innerText = '星巴克'
+                    p.innerText = '喝一口直接讓你清醒!'
+                    return '冷翠咖啡'
+                }
+            },
+            {
+                id:'5',
+                color:'blue',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://memeprod.ap-south-1.linodeobjects.com/user-template-thumbnail/0f24f5ae6da534bc78764259ec7c89fd.jpg`)
+                    h1.innerText = '吃隔壁同事/同學的'
+                    return '隔壁的永遠最好吃'
+                }
+            },
+            {
+                id:'6',
+                color:'violet',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t31.18172-8/17218586_997765290323810_6700047538545452660_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_ohc=kv7WJtaOcqQAX9JcQzx&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT9Ik8A5SjO5OJGsmrG4TfOBut9OT9clz70qDjaFo7MO8g&oe=62228F62`)
+                    h1.innerText = '川品排骨飯'
+                    p.innerText = '身在東區巷弄還上過食尚玩家，愛吃雞排的你一定要試試'
+                    return '梅粉雞排飯'
+                }
+            },
+            {
+                id:'7',
+                color:'purple',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://foodsafety.family.com.tw/product_img/003004.1530079.jpg`)
+                    h1.innerText = '全家'
+                    p.innerText = '天冷來一碗最適合不過'
+                    return '香菇雞燉湯'
+                }
+            },
+            {
+                id:'8',
+                color:'red',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.ohoh-yes.com.tw/upload/meal/655_715_14.png`)
+                    h1.innerText = '大呼過癮火鍋'
+                    p.innerText = '一個人吃火鍋也要吃的有儀式感'
+                    return '味噌魚片鍋'
+                }
+            },
+            {
+                id:'9',
+                color:'orange',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://ichiran.com/img/page/menu-menu_main01.png`)
+                    h1.innerText = '一蘭拉麵'
+                    p.innerText = ''
+                    return '點一碗白飯最後加到湯裡面'
+                }
+            },
+            {
+                id:'10',
+                color:'yellow',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://www.jencongzhong.com.tw/upload/catalog_b/ALL_catalog_20L24_Rm2BE7DR2o.jpg`)
+                    h1.innerText = '人从众牛排'
+                    p.innerText = '雞腿就是讚'
+                    return '黃金雞腿排'
+                }
+            },
+            {
+                id:'11',
+                color:'green',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.8way.com.tw/8WayApi/document/318a7a32-2c27-413d-b6a2-80f43dedbe83.png`)
+                    h1.innerText = '八方雲集'
+                    p.innerText = '雖然會等很久但很好吃'
+                    return '鮮蝦水餃'
+                }
+            },
+            {
+                id:'12',
+                color:'blue',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.tenren.com.tw/WebTools/Thumbnail.ashx?Siteid=10&Menuid=654036521237004377&fd=Goods_NPics&Pname=%E7%82%9F%E5%AE%A2%E6%8B%BF%E9%90%B5.jpg`)
+                    h1.innerText = '天仁茗茶'
+                    p.innerText = '覺得913太淡可以喝這個!'
+                    return '炟客拿鐵'
+                }
+            },
+            {
+                id:'13',
+                color:'violet',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://www.7-11.com.tw/freshfoods/3_Cuisine/images/cuisine_222.png`)
+                    h1.innerText = '7-11'
+                    p.innerText = '臨時想吃麻油雞這個絕對是你的好選擇'
+                    return '麻油雞麵線'
+                }
+            },
+            {
+                id:'14',
+                color:'purple',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.louisacoffee.co/upload/product/20171013_033035.jpg`)
+                    h1.innerText = '路易莎'
+                    p.innerText = '什麼時候吃都很讚'
+                    return '烤腿排風味三明治'
+                }
+            },
+            {
+                id:'15',
+                color:'red',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.chingshin.tw/includes/timthumb.php?src=upload/product/1703091704210000001.png&w=280&h=350&zc=2`)
+                    h1.innerText = '清心'
+                    p.innerText = '淡淡的蜂蜜香令人陶醉'
+                    return '隱藏版-珍珠蜂蜜鮮奶普洱'
+                }
+            },
+            {
+                id:'16',
+                color:'orange',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://kurasushi.tw/uploads/4484d62f-aa8e-4c7b-8e4c-c008191ed0a8.jpg`)
+                    h1.innerText = '藏壽司'
+                    p.innerText = '鮭魚絕對是首選!'
+                    return '炙烤起司鮭魚'
+                }
+            },
+            {
+                id:'17',
+                color:'yellow',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/32896957_913187265529193_2969545310486921216_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=e3f864&_nc_ohc=g5QhkNTRW2EAX9y8U2Y&tn=d2wLXJE2sY2XZXG9&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT_wI7mmZGx1K6CC0War9LJaWUfTclyZMl83nroQD5X28A&oe=62263803`)
+                    h1.innerText = '初炸小食店'
+                    p.innerText = '先炸後炒，鍋氣十足'
+                    return '鹽酥雞、黑板上手寫菜單'
+                }
+            },
+            {
+                id:'18',
+                color:'green',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://ttfb-bs-s3.25sprout.work/upload/menu/image/20181206-d6bc64a5a27b52e8a134834f7e45ea5c.jpg`)
+                    h1.innerText = '大心'
+                    p.innerText = '一秒到泰國，微酸滋味讓你全身舒暢'
+                    return '酸辣番茄豬肉麵'
+                }
+            },
+            {
+                id:'19',
+                color:'blue',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://www.chinhuajiao.com/img/CHJ_web_ingredients-4.jpg`)
+                    h1.innerText = '青花驕'
+                    p.innerText = '朋友聚會還是要吃得健康'
+                    return '酸菜白肉鍋'
+                }
+            },
+            {
+                id:'20',
+                color:'violet',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`http://civicshabu.com/images/portfolio/portfolio-1522-857-OPEN-11.jpg`)
+                    h1.innerText = '市民大道火鍋'
+                    p.innerText = '自己吃或和朋友吃都很適合'
+                    return '鮮魚三拼'
+                }
+            },
+            {
+                id:'21',
+                color:'pruple',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.mcdonalds.com/is/image/content/dam/tw/nutrition/nfl-product/product/products/egg-burger-with-chicken.jpg?$Product_Desktop$`)
+                    h1.innerText = '麥當勞'
+                    p.innerText = '麥當勞早餐萬年不敗'
+                    return '香雞蛋堡'
+                }
+            },
+            {
+                id:'22',
+                color:'red',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://www.mos.com.tw/upload/product/20200424_094545_027.jpg`)
+                    h1.innerText = '摩斯'
+                    p.innerText = '米漢堡屆的翹楚'
+                    return '薑燒珍珠堡'
+                }
+            },
+            {
+                id:'23',
+                color:'orange',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://storage.googleapis.com/kfcoosfs/%E6%AD%A3%E5%8C%97%E5%B9%B3%E9%9B%9E%E8%82%89%E6%8D%B2%E5%80%8B%E4%BA%BA%E9%A4%90-210826-pc.jpg`)
+                    h1.innerText = '肯德雞'
+                    p.innerText = '不敢吃辣的這款絕對要嘗試!'
+                    return '正北平雞肉捲餐'
+                }
+            },
+            {
+                id:'24',
+                color:'yellow',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://italentwebimg.azurewebsites.net/seina/goshopping8-3-520000/pica-l/42c2281b-6e68-4e58-8633-02bb916d8ed5.png`)
+                    h1.innerText = '漢堡王'
+                    p.innerText = '炭烤香再加上培根的油脂，爽阿!'
+                    return '火烤雞腿培根堡'
+                }
+            },
+            {
+                id:'25',
+                color:'green',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/161377797_3983375515061116_633920858319683462_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=Vs7On3y4oqkAX-PFJy5&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT-a1F01XqNFaj1ms9zgpAn2PozUZHJhBn5GPjl2hBKzpQ&oe=62256E8B`)
+                    h1.innerText = '孫東寶'
+                    p.innerText = '起死回生的台式牛排!餐包也很讚'
+                    return '檸檬鮭魚排'
+                }
+            },
+            {
+                id:'26',
+                color:'blue',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://www.dintaifung.com.tw/archive/images/food/BN022.png`)
+                    h1.innerText = '鼎泰豐'
+                    p.innerText = '米飯粒粒分明!讚'
+                    return '蝦仁蛋炒飯'
+
+                }
+            },
+            {
+                id:'27',
+                color:'violet',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://i0.wp.com/gofoodie.cc/wp-content/uploads/2021/01/%E8%A6%BA%E6%97%85%E5%92%96%E5%95%A11.jpg?resize=980%2C735&ssl=1`)
+                    h1.innerText = '覺旅咖啡'
+                    p.innerText = '絕對讓你飽的天靈蓋'
+                    return '義大利碗麵系列'
+                }
+            },
+            {
+                id:'28',
+                color:'purple',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://3.bp.blogspot.com/-A1-50CmIor8/VJfZCUfaiaI/AAAAAAAAh9A/SLVpRCV4arE/s600/%25E7%2584%25A1%25E5%258D%25B0%25E8%2589%25AF%25E5%2593%2581_Cafe%2526Meal%2BMUJI%2B4%25E5%2593%2581%25E5%25A5%2597%25E9%25A4%2590.jpg`)
+                    h1.innerText = '無印良品'
+                    p.innerText = '一秒讓你飛到日本體驗和食'
+                    return '美乃滋甜辣醬炸雞'
+                }
+            },
+            {
+                id:'29',
+                color:'red',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://subway.com.tw/GoWeb2/include/UploadImages/20190628113800-18922606025cd27a852abe1-p01.jpg`)
+                    h1.innerText = 'Subway'
+                    p.innerText = '漢堡也可以吃得很健康'
+                    return '鮮嫩雞柳'
+                }
+            },
+            {
+                id:'30',
+                color:'orange',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://scontent.ftpe11-1.fna.fbcdn.net/v/t1.6435-9/130090082_3519461048144035_1793664155506705748_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=a26aad&_nc_ohc=JNnqRCnE3aEAX__4NUt&_nc_ht=scontent.ftpe11-1.fna&oh=00_AT_qAZsgJe4-1PCmTkcFRpbfzyjE5WnIjYiXI8jse2O3Uw&oe=62264841`)
+                    h1.innerText = '塔可老爹'
+                    p.innerText = '一秒飛到墨西哥'
+                    return '巴哈魚塔可'
+                }
+            },
+            {
+                id:'31',
+                color:'yellow',
+                icon:'fas fa-question',
+                target: function(){
+                    img.setAttribute('src',`https://shoplineimg.com/5eaf9b45887c44002a22cccc/5f1ea7aac48f77004b200b76/800x.webp?source_format=JPG`)
+                    h1.innerText = '稍甜'
+                    p.innerText = '絕對是千層界的第一名!'
+                    return '伯爵千層'
+                }
+            },
+            {
+                id:'32',
+                color:'green',
+                icon:'fas fa-question',
+                target:function(){
+                    img.setAttribute('src',`https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/270501214_3140101502934949_4275526344230068051_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=vyDzoE0s9CAAX-GooEu&_nc_ht=scontent.ftpe11-1.fna&oh=00_AT8VzkaHSFxMjCo0IOwahbvUvo1aNzh24vyB3mX52Hcpiw&oe=6205061D`)
+                    h1.innerText = '家.溫度 湯專門店'
+                    p.innerText = '一口喝下去讓你腦袋直接浮現家鄉'
+                    return '好菇竹筍豬軟骨軟骨燉湯'
+                }
+            },
+        ]
+
+        let steps = 0
+        let allSteps = 0
+        let currentIndex = 0
+        let speed = 50
+        
+        //DOOOOOOOM
+        let bricks = document.querySelectorAll('[box-id]')
+        let startBtn = document.querySelector('button')
+        let msgShow = document.querySelector('#msg')
+        let img = document.querySelector('img')
+        let h1 = document.querySelector('h1')
+        let p = document.querySelector('#content')
+
+        //window onload
+        alert('是不是不知道吃什麼呢?快按下按鈕幫你決定!')
+        window.onload = function(){
+            img.setAttribute('src',`/0128/default.jpg`)
+            img.setAttribute('alt','default')
+            bricks = Array.from(bricks).sort((a,b)=>{
+                return a.getAttributeNode('box-id').value - b.getAttributeNode('box-id').value
+                // console.log(bricks)
+            })
+            //塞資料
+            bricks.forEach(box=>{
+                let id = box.getAttributeNode('box-id').value
+                let data = brickData.find(x=>x.id == id)
+                let i = document.createElement('i')
+                i.setAttribute('class',data.icon)
+                i.style.color = data.color
+                box.append(i)
+
+            })
+    
+            //button
+            startBtn.onclick = function(){
+                speed = 50
+                let random = Math.floor(Math.random()*brickData.length)+1
+                // console.log(random)
+                steps = random + (1.5*brickData.length)
+                // steps = random
+                allSteps = steps
+    
+                turnAround()
+            }
+        }
+
+
+        //function
+        function turnAround(){
+            bricks[currentIndex].classList.remove('active')
+            currentIndex++
+
+            if(currentIndex >= bricks.length){
+                currentIndex = 0
+            }
+            bricks[currentIndex].classList.add('active')
+            steps--
+
+            if(steps > 0){
+                setTimeout(turnAround,speed)
+
+                if(steps < Math.floor(allSteps/3)){
+                    speed += 7
+                }
+            }
+            else{
+                let val = brickData[currentIndex].target()
+                msgShow.innerText = `私心推薦:${val}`
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
