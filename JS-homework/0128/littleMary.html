@@ -11,7 +11,7 @@
     <title>今晚想來點...</title>
     <style>
         body{
-            background-image: url("/0128/background.jpg");
+            background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20190222/ourmid/pngtree-delicious-food-advertising-background-backgroundfoodhot-pot-ingredientsdatablue-image_54050.jpg");
             background-size: 100%;
             /* background-color: rgb(255, 255, 255,.9); */
             background-color: rgb(180, 176, 176, 0.6);
@@ -186,7 +186,7 @@
                 target:function(){
                     img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t31.18172-8/17218586_997765290323810_6700047538545452660_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_ohc=kv7WJtaOcqQAX9JcQzx&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT9Ik8A5SjO5OJGsmrG4TfOBut9OT9clz70qDjaFo7MO8g&oe=62228F62`)
                     h1.innerText = '川品排骨飯'
-                    p.innerText = '身在東區巷弄還上過食尚玩家，愛吃雞排的你一定要試試'
+                    p.innerText = '身在東區巷弄還被食尚玩家採訪過，愛吃雞排的你一定要試試'
                     return '梅粉雞排飯'
                 }
             },
@@ -250,10 +250,12 @@
                 color:'blue',
                 icon:'fas fa-question',
                 target:function(){
-                    img.setAttribute('src',`https://www.tenren.com.tw/WebTools/Thumbnail.ashx?Siteid=10&Menuid=654036521237004377&fd=Goods_NPics&Pname=%E7%82%9F%E5%AE%A2%E6%8B%BF%E9%90%B5.jpg`)
+                    img.setAttribute('src',`https://www.tenren.com.tw/WebTools/Thumbnail.ashx?Siteid=10&Menuid=654036521237004377&fd=Goods_NPics&Pname=%E7%8F%8D%E7%8F%A0%E5%A5%B6%E7%B6%A0.jpg`)
+                    img.style.height = '300px'
+                    img.style.width = '250px'
                     h1.innerText = '天仁茗茶'
                     p.innerText = '覺得913太淡可以喝這個!'
-                    return '炟客拿鐵'
+                    return '炟客拿鐵加珍珠3分糖去冰'
                 }
             },
             {
@@ -362,7 +364,7 @@
                 target: function(){
                     img.setAttribute('src',`https://www.mos.com.tw/upload/product/20200424_094545_027.jpg`)
                     h1.innerText = '摩斯'
-                    p.innerText = '米漢堡屆的翹楚'
+                    p.innerText = '米漢堡界的翹楚'
                     return '薑燒珍珠堡'
                 }
             },
@@ -418,7 +420,7 @@
                 target:function(){
                     img.setAttribute('src',`https://i0.wp.com/gofoodie.cc/wp-content/uploads/2021/01/%E8%A6%BA%E6%97%85%E5%92%96%E5%95%A11.jpg?resize=980%2C735&ssl=1`)
                     h1.innerText = '覺旅咖啡'
-                    p.innerText = '絕對讓你飽的天靈蓋'
+                    p.innerText = '絕對讓你飽到天靈蓋'
                     return '義大利碗麵系列'
                 }
             },
@@ -495,7 +497,7 @@
         //window onload
         alert('是不是不知道吃什麼呢?快按下按鈕幫你決定!')
         window.onload = function(){
-            img.setAttribute('src',`/0128/default.jpg`)
+            img.setAttribute('src',`https://imgur.dcard.tw/EMx2406.jpg`)
             img.setAttribute('alt','default')
             bricks = Array.from(bricks).sort((a,b)=>{
                 return a.getAttributeNode('box-id').value - b.getAttributeNode('box-id').value
