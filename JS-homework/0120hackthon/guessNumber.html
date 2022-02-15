@@ -95,11 +95,11 @@
         function showAns(){
             alert('想偷看答案?')
             alert('答案是'+ ans.join(','))
-            alert('請按start重新開始')
-                startBtn.disabled = false
-                ansBtn. disabled = true
-                guessBtn.disabled = true
-                resetBtn.disabled = true
+            alert('再接再厲')
+                // startBtn.disabled = false
+                // ansBtn. disabled = true
+                // guessBtn.disabled = true
+                // resetBtn.disabled = true
         }
 
         function reset(){
@@ -114,7 +114,7 @@
             //1.輸入判斷 :1.輸入長度不為4； 2.輸入有重複數字； 3.輸入非數字:注音、英文、符號、小數
             guess = inputArea.value.split('').map(x=>parseInt(x))
             if(guess.length !=4 || guess.includes(NaN)){
-                alert('賣來亂噢')
+                alert('賣來亂噢，請輸入四位正整數')
             }
             else if ([...new Set(guess)].length !=4){
                 // Set 中元素不會重複的特性
