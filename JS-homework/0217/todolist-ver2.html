@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="container">
+        <h1>待辦事項</h1>
+        <div class="input-group mb-3">
+            <input id="input-area" type="text" class="form-control" placeholder="todo......." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button id="add" class="btn btn-outline-secondary bg-primary text-white" type="button" id="button-addon2">新增</button>
+        </div>
+        <div class="content">
+            <!-- 要放待辦事項的地方:動態生成 -->
+        </div>
+    </div>
+    <template id="content-box">
+        <div class="temp-box">
+            <div class="input-group mb-3">
+                <div class="input-group-text">
+                    <input  id ="inputck" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                </div>
+                <input id="new-input" type="text" class="form-control" aria-label="Text input with checkbox" disabled>
+                <button id="edit" class="btn btn-outline-secondary btn-warning text-white " type="button">編輯</button>
+                <button id="delete" class="btn btn-outline-secondary btn-danger text-white " type="button">刪除</button>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        //1.輸入:沒資料/空白->駁回
+
+        //2.新增:local storage同步，一個key對多個資料
+        //2.1新增內容要出現在版面上
+        //2.2版面上的內容不能編輯
+        //2.3按下新增後輸入框要清空
+
+        //3.編輯:按下編輯要變成有綠色的保存按鈕
+        //3.1按下編輯要可以編輯內容
+        //3.2要知道編輯哪筆
+
+        //4.保存:按下保存要更新到local storage
+        //4.1畫面要更新成新的內容
+
+        //5.刪除:local storage
+        //5.1畫面刪除
+        //5.2要知道刪除哪筆
+
+        //6.checked box
+
+        //DOM
+        //輸入框
+        const input = document.querySelector('#input-area')
+        const addBtn = document.querySelector('#add')
+
+        //顯示區塊
+        const template = document.querySelector('#content-box') //模板
+        const content = document.querySelector('.content') //要放動態生成的區塊
+        const container = document.querySelector('.container') //整個大容器
+
+        //宣告        
+        //資料部分
+        let data //裝資料的容器
+        let current
+
+        //onload
+        window.onload = function(){
+            load()
+        }
+
+        //event
+        addBtn.addEventListener('click',add)
+
+
+        //function
+        function add(){
+            let todoObj = {checked:false , content:input.value} //資料格式
+            let todoList //localstorage的key
+
+            //輸入框沒內容
+            if( input.value.trim() == ''){
+                alert('請輸入內容')
+                input.value = ''
+            }
+            else {
+                if(localStorage.getItem('todoList')==null){
+                    data = []
+                    data.push(todoObj)
+                }
+                else{
+                    data = JSON.parse(localStorage.getItem('todoList'))//如果有資料就先取出然後再塞新資料的data陣列
+                    data.push(todoObj)
+                }
+                localStorage.setItem('todoList',JSON.stringify(data))
+                cloneBlock(data)
+                input.value = ''
+            }
+            load()
+        }
+
+        function cloneBlock(data){
+            console.log(data)
+            let clone = template.content.cloneNode(true)
+            const newInput = clone.querySelector('#new-input')
+            const editBtn = clone.querySelector('#edit')
+            const deletdBtn = clone.querySelector('#delete')
+            newInput.value = input.value
+
+            content.appendChild(clone)
+            container.appendChild(content)
+        }
+
+        function load(){
+            content.innerHTML = ''
+            data = JSON.parse(localStorage.getItem('todoList'))
+            if(data != null){
+                data.forEach((item,index)=>{
+                    let clone = template.content.cloneNode(true)
+                    clone.querySelector('.temp-box').setAttribute("data-id",index)  //給每個複製的模板一個自定義id
+                    console.log(clone.querySelector('.temp-box'))
+                    let newInput = clone.querySelector('#new-input')
+                    let editBtn = clone.querySelector('#edit')
+                    let deleteBtn = clone.querySelector('#delete')
+                    let inputck = clone.querySelector('#inputck') //check box
+                    newInput.value = item.content
+                    content.appendChild(clone)
+                    container.appendChild(content)
+
+                    //編輯:如果按鈕為編輯:打開輸入框、按鈕變綠色&保存
+                    editBtn.onclick = function(){
+                        if(editBtn.innerText =='編輯'){
+                            newInput.removeAttribute('disabled')
+                            editBtn.setAttribute('class','btn-success btn')
+                            editBtn.innerText = '保存'                
+                        }
+                        else{
+                            newInput.disabled = true
+                            editBtn.setAttribute('class','btn-warning btn text-white')
+                            editBtn.innerText = '編輯'
+                            let edit = JSON.parse(localStorage.getItem('todoList'))
+                            edit[index].content = newInput.value
+                            localStorage.setItem('todoList',JSON.stringify(edit))
+                        }
+                    }
+
+                    //刪除:先撈資料->撈出來是陣列->針對index做刪除->畫面重整
+                    deleteBtn.onclick = function(){
+                        let deleteContent = JSON.parse(localStorage.getItem('todoList'))
+                        deleteContent.splice(index,1)
+                        localStorage.setItem('todoList',JSON.stringify(deleteContent))
+                        load()
+                    }
+                    
+                    //畫面checked判斷
+                    if(item.checked){
+                        inputck.setAttribute('checked',true)
+                    }
+                    //localstorage checked狀態判斷
+                    inputck.onclick = function(){
+                        let check = JSON.parse(localStorage.getItem('todoList'))
+                        if(inputck.checked){
+                            check[index].checked = true
+                            // localStorage.setItem('todoList',JSON.stringify(check))
+                        }
+                        else{
+                            // let check = JSON.parse(localStorage.getItem('todoList'))
+                            check[index].checked = false
+                        }
+                        localStorage.setItem('todoList',JSON.stringify(check))
+                    }
+                })
+            }
+        }
+
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
