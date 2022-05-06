@@ -1,69 +1,89 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <title>今晚想來點...</title>
     <style>
-        body{
+        body {
             background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20190222/ourmid/pngtree-delicious-food-advertising-background-backgroundfoodhot-pot-ingredientsdatablue-image_54050.jpg");
             background-size: 100%;
             /* background-color: rgb(255, 255, 255,.9); */
             background-color: rgb(180, 176, 176, 0.6);
             background-blend-mode: multiply;
         }
-        i{
+
+        i {
             font-size: 48px;
         }
-        [box-id]{
+
+        [box-id] {
             height: 80px;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
-            border:none;
+            border: none;
             transition: .3s;
         }
-        [box-id].active{
+
+        [box-id].active {
             border: 5px yellow solid;
-            box-shadow:  0 0 20px red;
+            box-shadow: 0 0 20px red;
             transition: 0s;
         }
-        #msg{
+
+        #msg {
             font-size: 36px;
             text-align: center;
         }
-        .middle{
+
+        .middle {
             height: 80px;
             /* border: 2px solid red; */
             text-align: center;
         }
+
         /* img{
             width: 350px;
             height: 250px;
         } */
     </style>
+    <!-- Hotjar Tracking Code for https://slippery1231.github.io/JS-homework/0128/littleMarywithHotjar.html -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2957779, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
 </head>
+
 <body>
     <div class="container mt-5">
         <!-- row1 -->
         <div class="row">
-            <div box-id= "1" class="col-1"></div>
-            <div box-id= "2" class="col-1"></div>
-            <div box-id= "3" class="col-1"></div>
-            <div box-id= "4" class="col-1"></div>
-            <div box-id= "5" class="col-1"></div>
-            <div box-id= "6" class="col-1"></div>
-            <div box-id= "7" class="col-1"></div>
-            <div box-id= "8" class="col-1"></div>
-            <div box-id= "9" class="col-1"></div>
-            <div box-id= "10" class="col-1"></div>
-            <div box-id= "11" class="col-1"></div>
-            <div box-id= "12" class="col-1"></div>
+            <div box-id="1" class="col-1"></div>
+            <div box-id="2" class="col-1"></div>
+            <div box-id="3" class="col-1"></div>
+            <div box-id="4" class="col-1"></div>
+            <div box-id="5" class="col-1"></div>
+            <div box-id="6" class="col-1"></div>
+            <div box-id="7" class="col-1"></div>
+            <div box-id="8" class="col-1"></div>
+            <div box-id="9" class="col-1"></div>
+            <div box-id="10" class="col-1"></div>
+            <div box-id="11" class="col-1"></div>
+            <div box-id="12" class="col-1"></div>
         </div>
         <!-- row2 -->
         <div class="row middle">
@@ -125,12 +145,12 @@
         //格子
         let brickData = [
             {
-                id:'1',
-                color:'red',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://static.wixstatic.com/media/55382e_99b3826a164749c4afca2a130fea8118~mv2.png/v1/fill/w_380,h_258,al_c,q_85,usm_0.66_1.00_0.01/%E5%8E%BB%E8%83%8C%E8%B1%AC%E6%8E%92%E5%AE%9A%E9%A3%9F_%E9%99%B0%E5%BD%B1.webp`)
-                    img.setAttribute('class','me-0')
+                id: '1',
+                color: 'red',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://static.wixstatic.com/media/55382e_99b3826a164749c4afca2a130fea8118~mv2.png/v1/fill/w_380,h_258,al_c,q_85,usm_0.66_1.00_0.01/%E5%8E%BB%E8%83%8C%E8%B1%AC%E6%8E%92%E5%AE%9A%E9%A3%9F_%E9%99%B0%E5%BD%B1.webp`)
+                    img.setAttribute('class', 'me-0')
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '吉豚屋'
@@ -139,11 +159,11 @@
                 }
             },
             {
-                id:'2',
-                color:'orange',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.sushiro.com.tw/Upload/Dish/2dc0cc4e-b6b1-4132-8caf-86a74590a4b0.png`)
+                id: '2',
+                color: 'orange',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.sushiro.com.tw/Upload/Dish/2dc0cc4e-b6b1-4132-8caf-86a74590a4b0.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '壽司郎'
@@ -152,11 +172,11 @@
                 }
             },
             {
-                id:'3',
-                color:'yellow',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://bigbro.tw/wp-content/uploads/2021/05/20210513185042_55.jpeg`)
+                id: '3',
+                color: 'yellow',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://bigbro.tw/wp-content/uploads/2021/05/20210513185042_55.jpeg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '五十嵐'
@@ -165,11 +185,11 @@
                 }
             },
             {
-                id:'4',
-                color:'green',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://www.starbucks.com.tw/common/objects/images/product/20210930154125366.jpg`)
+                id: '4',
+                color: 'green',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.starbucks.com.tw/common/objects/images/product/20210930154125366.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '星巴克'
@@ -178,24 +198,24 @@
                 }
             },
             {
-                id:'5',
-                color:'blue',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://memeprod.ap-south-1.linodeobjects.com/user-template-thumbnail/0f24f5ae6da534bc78764259ec7c89fd.jpg`)
+                id: '5',
+                color: 'blue',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://memeprod.ap-south-1.linodeobjects.com/user-template-thumbnail/0f24f5ae6da534bc78764259ec7c89fd.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '吃隔壁同事/同學的'
-                    p.innerText= ''
+                    p.innerText = ''
                     return '隔壁的永遠最好吃'
                 }
             },
             {
-                id:'6',
-                color:'violet',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t31.18172-8/17218586_997765290323810_6700047538545452660_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_ohc=kv7WJtaOcqQAX9JcQzx&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT9Ik8A5SjO5OJGsmrG4TfOBut9OT9clz70qDjaFo7MO8g&oe=62228F62`)
+                id: '6',
+                color: 'violet',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://scontent.ftpe11-2.fna.fbcdn.net/v/t31.18172-8/17218586_997765290323810_6700047538545452660_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_ohc=kv7WJtaOcqQAX9JcQzx&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT9Ik8A5SjO5OJGsmrG4TfOBut9OT9clz70qDjaFo7MO8g&oe=62228F62`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '川品排骨飯'
@@ -204,11 +224,11 @@
                 }
             },
             {
-                id:'7',
-                color:'purple',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://foodsafety.family.com.tw/product_img/003004.1530079.jpg`)
+                id: '7',
+                color: 'purple',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://foodsafety.family.com.tw/product_img/003004.1530079.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '全家'
@@ -217,11 +237,11 @@
                 }
             },
             {
-                id:'8',
-                color:'red',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.ohoh-yes.com.tw/upload/meal/655_715_14.png`)
+                id: '8',
+                color: 'red',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.ohoh-yes.com.tw/upload/meal/655_715_14.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '大呼過癮火鍋'
@@ -230,11 +250,11 @@
                 }
             },
             {
-                id:'9',
-                color:'orange',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://ichiran.com/img/page/menu-menu_main01.png`)
+                id: '9',
+                color: 'orange',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://ichiran.com/img/page/menu-menu_main01.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '一蘭拉麵'
@@ -243,11 +263,11 @@
                 }
             },
             {
-                id:'10',
-                color:'yellow',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://www.jencongzhong.com.tw/upload/catalog_b/ALL_catalog_20L24_Rm2BE7DR2o.jpg`)
+                id: '10',
+                color: 'yellow',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.jencongzhong.com.tw/upload/catalog_b/ALL_catalog_20L24_Rm2BE7DR2o.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '人从众牛排'
@@ -256,11 +276,11 @@
                 }
             },
             {
-                id:'11',
-                color:'green',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.8way.com.tw/8WayApi/document/318a7a32-2c27-413d-b6a2-80f43dedbe83.png`)
+                id: '11',
+                color: 'green',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.8way.com.tw/8WayApi/document/318a7a32-2c27-413d-b6a2-80f43dedbe83.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '八方雲集'
@@ -269,11 +289,11 @@
                 }
             },
             {
-                id:'12',
-                color:'blue',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.tenren.com.tw/WebTools/Thumbnail.ashx?Siteid=10&Menuid=654036521237004377&fd=Goods_NPics&Pname=%E7%8F%8D%E7%8F%A0%E5%A5%B6%E7%B6%A0.jpg`)
+                id: '12',
+                color: 'blue',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.tenren.com.tw/WebTools/Thumbnail.ashx?Siteid=10&Menuid=654036521237004377&fd=Goods_NPics&Pname=%E7%8F%8D%E7%8F%A0%E5%A5%B6%E7%B6%A0.jpg`)
                     img.style.width = '250px'
                     img.style.height = '300px'
                     h1.innerText = '天仁茗茶'
@@ -282,11 +302,11 @@
                 }
             },
             {
-                id:'13',
-                color:'violet',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://www.7-11.com.tw/freshfoods/3_Cuisine/images/cuisine_222.png`)
+                id: '13',
+                color: 'violet',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.7-11.com.tw/freshfoods/3_Cuisine/images/cuisine_222.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '7-11'
@@ -295,11 +315,11 @@
                 }
             },
             {
-                id:'14',
-                color:'purple',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.louisacoffee.co/upload/product/20171013_033035.jpg`)
+                id: '14',
+                color: 'purple',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.louisacoffee.co/upload/product/20171013_033035.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '路易莎'
@@ -308,11 +328,11 @@
                 }
             },
             {
-                id:'15',
-                color:'red',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.chingshin.tw/includes/timthumb.php?src=upload/product/1703091704210000001.png&w=280&h=350&zc=2`)
+                id: '15',
+                color: 'red',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.chingshin.tw/includes/timthumb.php?src=upload/product/1703091704210000001.png&w=280&h=350&zc=2`)
                     img.style.width = '300px'
                     img.style.height = '350px'
                     h1.innerText = '清心'
@@ -321,11 +341,11 @@
                 }
             },
             {
-                id:'16',
-                color:'orange',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://kurasushi.tw/uploads/4484d62f-aa8e-4c7b-8e4c-c008191ed0a8.jpg`)
+                id: '16',
+                color: 'orange',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://kurasushi.tw/uploads/4484d62f-aa8e-4c7b-8e4c-c008191ed0a8.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '藏壽司'
@@ -334,11 +354,11 @@
                 }
             },
             {
-                id:'17',
-                color:'yellow',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/32896957_913187265529193_2969545310486921216_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=e3f864&_nc_ohc=g5QhkNTRW2EAX9y8U2Y&tn=d2wLXJE2sY2XZXG9&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT_wI7mmZGx1K6CC0War9LJaWUfTclyZMl83nroQD5X28A&oe=62263803`)
+                id: '17',
+                color: 'yellow',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/32896957_913187265529193_2969545310486921216_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=e3f864&_nc_ohc=g5QhkNTRW2EAX9y8U2Y&tn=d2wLXJE2sY2XZXG9&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT_wI7mmZGx1K6CC0War9LJaWUfTclyZMl83nroQD5X28A&oe=62263803`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '初炸小食店'
@@ -347,11 +367,11 @@
                 }
             },
             {
-                id:'18',
-                color:'green',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://ttfb-bs-s3.25sprout.work/upload/menu/image/20181206-d6bc64a5a27b52e8a134834f7e45ea5c.jpg`)
+                id: '18',
+                color: 'green',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://ttfb-bs-s3.25sprout.work/upload/menu/image/20181206-d6bc64a5a27b52e8a134834f7e45ea5c.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '大心'
@@ -360,11 +380,11 @@
                 }
             },
             {
-                id:'19',
-                color:'blue',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://www.chinhuajiao.com/img/CHJ_web_ingredients-4.jpg`)
+                id: '19',
+                color: 'blue',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.chinhuajiao.com/img/CHJ_web_ingredients-4.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '青花驕'
@@ -373,12 +393,12 @@
                 }
             },
             {
-                id:'20',
-                color:'violet',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`/0128/fish.jpg`)
-                    
+                id: '20',
+                color: 'violet',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `/0128/fish.jpg`)
+
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '市民大道火鍋'
@@ -387,11 +407,11 @@
                 }
             },
             {
-                id:'21',
-                color:'pruple',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.mcdonalds.com/is/image/content/dam/tw/nutrition/nfl-product/product/products/egg-burger-with-chicken.jpg?$Product_Desktop$`)
+                id: '21',
+                color: 'pruple',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.mcdonalds.com/is/image/content/dam/tw/nutrition/nfl-product/product/products/egg-burger-with-chicken.jpg?$Product_Desktop$`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '麥當勞'
@@ -400,11 +420,11 @@
                 }
             },
             {
-                id:'22',
-                color:'red',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://www.mos.com.tw/upload/product/20200424_094545_027.jpg`)
+                id: '22',
+                color: 'red',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.mos.com.tw/upload/product/20200424_094545_027.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '摩斯'
@@ -413,11 +433,11 @@
                 }
             },
             {
-                id:'23',
-                color:'orange',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://storage.googleapis.com/kfcoosfs/%E6%AD%A3%E5%8C%97%E5%B9%B3%E9%9B%9E%E8%82%89%E6%8D%B2%E5%80%8B%E4%BA%BA%E9%A4%90-210826-pc.jpg`)
+                id: '23',
+                color: 'orange',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://storage.googleapis.com/kfcoosfs/%E6%AD%A3%E5%8C%97%E5%B9%B3%E9%9B%9E%E8%82%89%E6%8D%B2%E5%80%8B%E4%BA%BA%E9%A4%90-210826-pc.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '肯德雞'
@@ -426,11 +446,11 @@
                 }
             },
             {
-                id:'24',
-                color:'yellow',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://italentwebimg.azurewebsites.net/seina/goshopping8-3-520000/pica-l/42c2281b-6e68-4e58-8633-02bb916d8ed5.png`)
+                id: '24',
+                color: 'yellow',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://italentwebimg.azurewebsites.net/seina/goshopping8-3-520000/pica-l/42c2281b-6e68-4e58-8633-02bb916d8ed5.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '漢堡王'
@@ -439,11 +459,11 @@
                 }
             },
             {
-                id:'25',
-                color:'green',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/161377797_3983375515061116_633920858319683462_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=Vs7On3y4oqkAX-PFJy5&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT-a1F01XqNFaj1ms9zgpAn2PozUZHJhBn5GPjl2hBKzpQ&oe=62256E8B`)
+                id: '25',
+                color: 'green',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/161377797_3983375515061116_633920858319683462_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=Vs7On3y4oqkAX-PFJy5&_nc_ht=scontent.ftpe11-2.fna&oh=00_AT-a1F01XqNFaj1ms9zgpAn2PozUZHJhBn5GPjl2hBKzpQ&oe=62256E8B`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '孫東寶'
@@ -452,11 +472,11 @@
                 }
             },
             {
-                id:'26',
-                color:'blue',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://www.dintaifung.com.tw/archive/images/food/BN022.png`)
+                id: '26',
+                color: 'blue',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://www.dintaifung.com.tw/archive/images/food/BN022.png`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '鼎泰豐'
@@ -466,11 +486,11 @@
                 }
             },
             {
-                id:'27',
-                color:'violet',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://i0.wp.com/gofoodie.cc/wp-content/uploads/2021/01/%E8%A6%BA%E6%97%85%E5%92%96%E5%95%A11.jpg?resize=980%2C735&ssl=1`)
+                id: '27',
+                color: 'violet',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://i0.wp.com/gofoodie.cc/wp-content/uploads/2021/01/%E8%A6%BA%E6%97%85%E5%92%96%E5%95%A11.jpg?resize=980%2C735&ssl=1`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '覺旅咖啡'
@@ -479,11 +499,11 @@
                 }
             },
             {
-                id:'28',
-                color:'purple',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://3.bp.blogspot.com/-A1-50CmIor8/VJfZCUfaiaI/AAAAAAAAh9A/SLVpRCV4arE/s600/%25E7%2584%25A1%25E5%258D%25B0%25E8%2589%25AF%25E5%2593%2581_Cafe%2526Meal%2BMUJI%2B4%25E5%2593%2581%25E5%25A5%2597%25E9%25A4%2590.jpg`)
+                id: '28',
+                color: 'purple',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://3.bp.blogspot.com/-A1-50CmIor8/VJfZCUfaiaI/AAAAAAAAh9A/SLVpRCV4arE/s600/%25E7%2584%25A1%25E5%258D%25B0%25E8%2589%25AF%25E5%2593%2581_Cafe%2526Meal%2BMUJI%2B4%25E5%2593%2581%25E5%25A5%2597%25E9%25A4%2590.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '無印良品'
@@ -492,11 +512,11 @@
                 }
             },
             {
-                id:'29',
-                color:'red',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://subway.com.tw/GoWeb2/include/UploadImages/20190628113800-18922606025cd27a852abe1-p01.jpg`)
+                id: '29',
+                color: 'red',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://subway.com.tw/GoWeb2/include/UploadImages/20190628113800-18922606025cd27a852abe1-p01.jpg`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = 'Subway'
@@ -505,11 +525,11 @@
                 }
             },
             {
-                id:'30',
-                color:'orange',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://scontent.ftpe11-1.fna.fbcdn.net/v/t1.6435-9/130090082_3519461048144035_1793664155506705748_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=a26aad&_nc_ohc=JNnqRCnE3aEAX__4NUt&_nc_ht=scontent.ftpe11-1.fna&oh=00_AT_qAZsgJe4-1PCmTkcFRpbfzyjE5WnIjYiXI8jse2O3Uw&oe=62264841`)
+                id: '30',
+                color: 'orange',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://scontent.ftpe11-1.fna.fbcdn.net/v/t1.6435-9/130090082_3519461048144035_1793664155506705748_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=a26aad&_nc_ohc=JNnqRCnE3aEAX__4NUt&_nc_ht=scontent.ftpe11-1.fna&oh=00_AT_qAZsgJe4-1PCmTkcFRpbfzyjE5WnIjYiXI8jse2O3Uw&oe=62264841`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '塔可老爹'
@@ -518,11 +538,11 @@
                 }
             },
             {
-                id:'31',
-                color:'yellow',
-                icon:'fas fa-question',
-                target: function(){
-                    img.setAttribute('src',`https://shoplineimg.com/5eaf9b45887c44002a22cccc/5f1ea7aac48f77004b200b76/800x.webp?source_format=JPG`)
+                id: '31',
+                color: 'yellow',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://shoplineimg.com/5eaf9b45887c44002a22cccc/5f1ea7aac48f77004b200b76/800x.webp?source_format=JPG`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '稍甜'
@@ -531,11 +551,11 @@
                 }
             },
             {
-                id:'32',
-                color:'green',
-                icon:'fas fa-question',
-                target:function(){
-                    img.setAttribute('src',`https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/270501214_3140101502934949_4275526344230068051_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=vyDzoE0s9CAAX-GooEu&_nc_ht=scontent.ftpe11-1.fna&oh=00_AT8VzkaHSFxMjCo0IOwahbvUvo1aNzh24vyB3mX52Hcpiw&oe=6205061D`)
+                id: '32',
+                color: 'green',
+                icon: 'fas fa-question',
+                target: function () {
+                    img.setAttribute('src', `https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/270501214_3140101502934949_4275526344230068051_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=vyDzoE0s9CAAX-GooEu&_nc_ht=scontent.ftpe11-1.fna&oh=00_AT8VzkaHSFxMjCo0IOwahbvUvo1aNzh24vyB3mX52Hcpiw&oe=6205061D`)
                     img.style.width = '350px'
                     img.style.height = '250px'
                     h1.innerText = '家.溫度 湯專門店'
@@ -549,7 +569,7 @@
         let allSteps = 0
         let currentIndex = 0
         let speed = 50
-        
+
         //DOOOOOOOM
         let bricks = document.querySelectorAll('[box-id]')
         let startBtn = document.querySelector('button')
@@ -560,65 +580,68 @@
 
         //window onload
         alert('是不是不知道吃什麼呢?快按下按鈕幫你決定!')
-        window.onload = function(){
-            img.setAttribute('src',`https://imgur.dcard.tw/EMx2406.jpg`)
-            img.setAttribute('alt','default')
+        window.onload = function () {
+            img.setAttribute('src', `https://imgur.dcard.tw/EMx2406.jpg`)
+            img.setAttribute('alt', 'default')
             img.style.width = '350px'
             img.style.height = '250px'
-            bricks = Array.from(bricks).sort((a,b)=>{
+            bricks = Array.from(bricks).sort((a, b) => {
                 return a.getAttributeNode('box-id').value - b.getAttributeNode('box-id').value
                 // console.log(bricks)
             })
             //塞資料
-            bricks.forEach(box=>{
+            bricks.forEach(box => {
                 let id = box.getAttributeNode('box-id').value
-                let data = brickData.find(x=>x.id == id)
+                let data = brickData.find(x => x.id == id)
                 let i = document.createElement('i')
-                i.setAttribute('class',data.icon)
+                i.setAttribute('class', data.icon)
                 i.style.color = data.color
                 box.append(i)
 
             })
-    
+
             //button
-            startBtn.onclick = function(){
+            startBtn.onclick = function () {
                 speed = 50
-                let random = Math.floor(Math.random()*brickData.length)+1
+                let random = Math.floor(Math.random() * brickData.length) + 1
                 // console.log(random)
-                steps = random + (1.5*brickData.length)
+                steps = random + (1.5 * brickData.length)
                 // steps = random
                 allSteps = steps
-    
+
                 turnAround()
             }
         }
 
 
         //function
-        function turnAround(){
+        function turnAround() {
             bricks[currentIndex].classList.remove('active')
             currentIndex++
 
-            if(currentIndex >= bricks.length){
+            if (currentIndex >= bricks.length) {
                 currentIndex = 0
             }
             bricks[currentIndex].classList.add('active')
             steps--
 
-            if(steps > 0){
-                setTimeout(turnAround,speed)
+            if (steps > 0) {
+                setTimeout(turnAround, speed)
 
-                if(steps < Math.floor(allSteps/3)){
+                if (steps < Math.floor(allSteps / 3)) {
                     speed += 7
                 }
             }
-            else{
+            else {
                 let val = brickData[currentIndex].target()
                 msgShow.innerText = `私心推薦:${val}`
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
 </body>
+
 </html>
