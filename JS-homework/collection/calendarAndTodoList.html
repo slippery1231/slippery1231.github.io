@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Calendar</title>
+    <style>
+        #previous,#next{
+            width: 100px;
+            height: 50px;
+        }
+        .cell{
+            width: 14.25%;
+            /* color: red; */
+            height:100px
+        }
+        tr:nth-child(odd)>td:nth-child(7){
+            color: red;
+        }
+        tr:nth-child(odd)>td:nth-child(1){
+            color: red;
+        }
+        tr:nth-child(even)>td:nth-child(1){
+            color: red;
+        }
+        tr:nth-child(even)>td:nth-child(7){
+            color: red;
+        }
+        body{
+            background: linear-gradient(360deg, transparent,lightslategray);
+        }
+        #previous, #next{
+            background-color: lightblue;
+        }
+        .modal-content{
+            background-color: #cad2c5;
+        }
+        .modal-body input, .modal-body textarea{
+            background-color: #cad2c5;
+            border-radius: 5px;
+            border:1px solid #354f52
+        }
+        #edit{
+            background-color: rgb(8, 92, 144);
+        }
+        #edit:hover{
+            background-color: rgb(20, 140, 214);
+        }
+        #delete{
+            background-color: rgb(217, 59, 59);
+        }
+        #delete:hover{
+            background-color: rgb(255, 0, 0);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container border border-2 border-secondary mt-3">
+        <div class="row">
+            <!-- todoList -->
+            <div class="col-4 mt-3 todoList-area">
+                <h1 class="d-flex justify-content-center">Monthly Goal</h1>
+                <div class="input-group mb-3">
+                    <input id="input-area" type="text" class="form-control" placeholder="Monthly Goal" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button id="add" class="btn btn-outline-secondary bg-secondary text-white" type="button" id="button-addon2">新增</button>
+                </div>
+                <div class="content">
+                    <!-- 要放待辦事項的地方:動態生成 -->
+                </div>                
+            </div>
+            <template id="content-box">
+                <div class="temp-box">
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input  id ="inputck" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                        </div>
+                        <input id="new-input" type="text" class="form-control" aria-label="Text input with checkbox" disabled>
+                        <button id="edit" class="btn btn-outline-secondary rounded-2 text-white " type="button">編輯</button>
+                        <button id="delete" class="btn btn-outline-secondary rounded-2 text-white " type="button">刪除</button>
+                    </div>
+                </div>
+            </template>
+        
+            <!-- calendar -->
+            <div class="col-8">
+                <div class="head d-flex justify-content-center mt-3">
+                    <button class="btn me-3 fw-bold" id="previous" onclick="previousMonth()"><<</button>
+                    <h1 class="year-month">0000/00</h1>
+                    <button class="btn ms-3 fw-bold" id="next" onclick="nextMonth()">>></button>    
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>日</th>
+                            <th>一</th>
+                            <th>二</th>
+                            <th>三</th>
+                            <th>四</th>
+                            <th>五</th>
+                            <th>六</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 動態生成日期 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!--新增MODAL  -->
+    <div class="modal fade" id="add-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">新增</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mt-1 fs-5 ">日期</p>
+                    <input type="text" id="add-date" class="w-100 p-2">
+                    <p class="mt-3 fs-5">標題</p>
+                    <input type="text" id="add-title" class="w-100 p-2">
+                    <p class="mt-3 fs-5">內容</p>
+                    <!-- <input type="text" id="add-content"> -->
+                    <textarea cols="30" rows="10" id="add-content" class="w-100"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" onclick="addTodoItem()">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改MODAL  -->
+    <div class="modal fade" id="edit-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">編輯</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mt-1 fs-5 ">日期</p>
+                    <input type="text" id="edit-date" class="w-100 p-2">
+                    <p class="mt-3 fs-5">標題</p>
+                    <input type="text" id="edit-title" class="w-100 p-2">
+                    <p class="mt-3 fs-5">內容</p>
+                    <!-- <input type="text" id="edit-content"> -->
+                    <textarea cols="30" rows="10" id="edit-content" class="w-100"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="editTodoItem()">編輯</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteTodoItem()">刪除</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //todaaaaaay
+        const today = new Date()
+
+        //YEAR MONTH DATE
+        let year = today.getFullYear() //取年分
+        let month = today.getMonth()//月份
+        let date = today.getDate()//取日期
+        let day = today.getDay()//取星期幾
+
+        let currentTodoIndex
+
+        //DOOOOOOOM
+        const yearMonthText = document.querySelector('.year-month')
+        const dateArea = document.querySelector('tbody')
+
+        const addModal = document.querySelector('#add-modal')
+        const editModal = document.querySelector('#edit-modal')
+
+        const addDateInput = document.querySelector('#add-date')
+        const addTitleInput = document.querySelector('#add-title')
+        const addContentInput = document.querySelector('#add-content')
+
+        const editDateInput = document.querySelector('#edit-date')
+        const editTitleInput = document.querySelector('#edit-title')
+        const editContentInput = document.querySelector('#edit-content')
+
+
+        //window
+        window.onload = function(){
+            init()
+            load()
+        }
+        
+    function init(){
+        // 渲染新月份要清空
+        dateArea.innerHTML =""
+        yearMonthText.innerText = `${year}/${month+1}月`
+        
+        //這個月第一天是星期幾
+        let firstDay = new Date(year, month , 1).getDay()
+        
+        //判斷這個月有幾天->知道月份的最夠一天是幾號就可以了 ->下個月的第0天
+        let dayOfMonth = new Date(year, month+1, 0).getDate()
+
+        let day = 1
+        let nextMonthDay = 1
+        let lastMonthDays = new Date(year, month , 0).getDate()
+        let rows = Math.ceil((dayOfMonth + firstDay)/7)
+
+        for(let row = 0 ; row < rows ; row++){
+            let tr = document.createElement('tr') //控制tr生成
+            for(let col = 0 ; col < 7 ; col++){
+                let td = document.createElement('td') //控制td
+                if(row == 0 && col < firstDay){
+                    //上個月的日期
+                    td.innerText = ""
+                    // td.innerText = `${lastMonthDays - firstDay +1}`
+                    // td.classList.add('opacity-50')
+                }
+                else{
+                    //這個月
+                    if(day <= dayOfMonth){
+                        // 這個月
+                        td.innerText = day
+                        td.setAttribute('class','cell')
+
+                        //六日的日期要呈現紅色
+                        if(day == 6 || day == 0){
+                            // td.setAttribute('style','font-size:100px')
+                        }
+
+                        //讓代辦事項可以出現在日曆上面
+                        if(localStorage.getItem(`${year}-${month+1}-${day}`)!=null){ //當天已經有行程
+                            let ul = document.createElement('ul')
+
+                            let todoList = JSON.parse(localStorage.getItem(`${year}-${month+1}-${day}`))
+                            todoList.forEach((item,index) => {
+                                let li = document.createElement('li')
+                                li.innerText = item.title
+                                li.onclick = function(event){ //點li可以編輯
+                                    bootstrap.Modal.getOrCreateInstance(editModal).show()
+                                    currentTodoIndex = index
+                                    editDateInput.value = `${year}-${month+1}-${td.childNodes[0].data}`
+                                    editTitleInput.value = item.title
+                                    editContentInput.value = item.content
+
+                                    event.stopPropagation()  //因為td包li，按下li時會連同觸發td的click事件->用event.stopPropagation阻止
+                                }
+                                ul.appendChild(li)
+                            })
+                            td.appendChild(ul)
+                        }
+                        td.onclick = function(){
+                            bootstrap.Modal.getOrCreateInstance(addModal).show() //用js把modal叫出來
+                            addDateInput.value = `${year}-${month+1}-${td.childNodes[0].data}`
+                        }
+                    }
+                    else{
+                        // 下個月
+                        td.innerText=""
+                        // td.innerText = `${nextMonthDay}`
+                        // td.classList.add('opacity-50')
+                        // nextMonthDay++
+                    }
+                    day++
+                }
+                tr.appendChild(td)
+            }
+            dateArea.appendChild(tr)
+        }
+    }
+
+    function previousMonth(){
+        month--
+        if(month==-1){
+            month =11
+            year--
+        }
+        init()
+    }
+    function nextMonth(){
+        month++
+        if(month== 12){
+            month = 0
+            year++
+        }
+        init()
+    }
+    //新增行程
+    function addTodoItem(){
+        let date = addDateInput.value
+        let todoItem = addTitleInput.value
+        let todoContent = addContentInput.value
+
+        let todoObj = {
+            title:todoItem,
+            content:todoContent
+        }
+        let todoList = []
+        if(localStorage.getItem(date)== null){ //確認localstorge是否已存有行程
+            //原本沒有行程
+            todoList.push(todoObj)
+        }
+        else{
+            //已經有行程了
+            todoList = JSON.parse(localStorage.getItem(date))
+            todoList.push(todoObj)
+        }
+        localStorage.setItem(date, JSON.stringify(todoList))
+        bootstrap.Modal.getOrCreateInstance(addModal).hide()
+        init()
+    }
+
+    //修改行程
+    function editTodoItem(){
+        let date = editDateInput.value
+        let todoItem = editTitleInput.value
+        let todoContent = editContentInput.value
+
+
+        let todoList = JSON.parse(localStorage.getItem(date)) //去localstorage找已經存在的行程
+        todoList[currentTodoIndex] = {title: todoItem,content:todoContent}
+
+        localStorage.setItem(date,JSON.stringify(todoList)) //把修改完的東西存回localstorage
+        bootstrap.Modal.getOrCreateInstance(editModal).hide()
+        init()
+
+    }
+
+    //刪除行程
+    function deleteTodoItem(){
+        let date = editDateInput.value
+
+        let todoList = JSON.parse(localStorage.getItem(date))
+        todoList.splice(currentTodoIndex,1) //把被選到的行程刪掉
+        localStorage.setItem(date,JSON.stringify(todoList))
+        bootstrap.Modal.getOrCreateInstance(editModal).hide()
+        init()
+    }
+
+
+    //todoList
+        //DOM
+        //輸入框
+        const input = document.querySelector('#input-area')
+        const addBtn = document.querySelector('#add')
+
+        //顯示區塊
+        const template = document.querySelector('#content-box') //模板
+        const content = document.querySelector('.content') //要放動態生成的區塊
+        const showArea = document.querySelector('.todoList-area')//顯示區塊
+
+        //宣告        
+        //資料部分
+        let data //裝資料的容器
+        let current
+
+        //event
+        addBtn.addEventListener('click',add)
+
+
+        //function
+        function add(){
+            let todoObj = {checked:false , content:input.value} //資料格式
+            let todoList //localstorage的key
+
+            //輸入框沒內容
+            if( input.value.trim() == ''){
+                alert('請輸入內容')
+                input.value = ''
+            }
+            else {
+                if(localStorage.getItem('todoList')==null){
+                    data = []
+                    data.push(todoObj)
+                }
+                else{
+                    data = JSON.parse(localStorage.getItem('todoList'))//如果有資料就先取出然後再塞新資料的data陣列
+                    data.push(todoObj)
+                }
+                localStorage.setItem('todoList',JSON.stringify(data))
+                cloneBlock(data)
+                input.value = ''
+            }
+            load()
+        }
+
+        function cloneBlock(data){
+            console.log(data)
+            let clone = template.content.cloneNode(true)
+            const newInput = clone.querySelector('#new-input')
+            const editBtn = clone.querySelector('#edit')
+            const deletdBtn = clone.querySelector('#delete')
+            newInput.value = input.value
+
+            content.appendChild(clone)
+            showArea.appendChild(content)
+        }
+
+        function load(){
+            content.innerHTML = ''
+            data = JSON.parse(localStorage.getItem('todoList'))
+            if(data != null){
+                data.forEach((item,index)=>{
+                    let clone = template.content.cloneNode(true)
+                    clone.querySelector('.temp-box').setAttribute("data-id",index)  //給每個複製的模板一個自定義id
+                    console.log(clone.querySelector('.temp-box'))
+                    let newInput = clone.querySelector('#new-input')
+                    let editBtn = clone.querySelector('#edit')
+                    let deleteBtn = clone.querySelector('#delete')
+                    let inputck = clone.querySelector('#inputck') //check box
+                    newInput.value = item.content
+                    content.appendChild(clone)
+                    showArea.appendChild(content)
+
+                    //編輯:如果按鈕為編輯:打開輸入框、按鈕變綠色&保存
+                    editBtn.onclick = function(){
+                        if(editBtn.innerText =='編輯'){
+                            newInput.removeAttribute('disabled')
+                            editBtn.setAttribute('class','btn-success btn')
+                            editBtn.innerText = '保存'                
+                        }
+                        else{
+                            newInput.disabled = true
+                            editBtn.setAttribute('class','btn-warning btn text-white')
+                            editBtn.innerText = '編輯'
+                            let edit = JSON.parse(localStorage.getItem('todoList'))
+                            edit[index].content = newInput.value
+                            localStorage.setItem('todoList',JSON.stringify(edit))
+                        }
+                    }
+
+                    //刪除:先撈資料->撈出來是陣列->針對index做刪除->畫面重整
+                    deleteBtn.onclick = function(){
+                        let deleteContent = JSON.parse(localStorage.getItem('todoList'))
+                        deleteContent.splice(index,1)
+                        localStorage.setItem('todoList',JSON.stringify(deleteContent))
+                        load()
+                    }
+                    
+                    //畫面checked判斷
+                    if(item.checked){
+                        inputck.setAttribute('checked',true)
+                    }
+                    //localstorage checked狀態判斷
+                    inputck.onclick = function(){
+                        let check = JSON.parse(localStorage.getItem('todoList'))
+                        if(inputck.checked){
+                            check[index].checked = true
+                            // localStorage.setItem('todoList',JSON.stringify(check))
+                        }
+                        else{
+                            // let check = JSON.parse(localStorage.getItem('todoList'))
+                            check[index].checked = false
+                        }
+                        localStorage.setItem('todoList',JSON.stringify(check))
+                    }
+                })
+            }
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
